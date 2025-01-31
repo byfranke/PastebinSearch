@@ -74,4 +74,3 @@ Searching on Pastebin...
 ```
 
 This will **open four browser tabs** with search results for **social_security_number** and **John** on Pastebin, using **Google, Bing, DuckDuckGo, and Yahoo**.
-```
