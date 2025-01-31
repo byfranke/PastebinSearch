@@ -11,7 +11,6 @@ if [ "$#" -eq 0 ]; then
     exit 1
 fi
 
-# Check if the first argument is a valid browser
 if command -v "$1" > /dev/null; then
     SEARCH="$1"
     shift
@@ -22,16 +21,13 @@ if ! command -v "$SEARCH" > /dev/null; then
     exit 1
 fi
 
-# Replace spaces in search terms with +
 TERMS=$(echo "$*" | sed 's/ /+/g')
 
-# Search URLs
 GOOGLE_URL="https://google.com/search?q=site:pastebin.com+intext:$TERMS"
 BING_URL="https://www.bing.com/search?q=site%3Apastebin.com+$TERMS"
 DUCKDUCKGO_URL="https://duckduckgo.com/?q=site:pastebin.com+$TERMS"
 YAHOO_URL="https://search.yahoo.com/search?p=site%3Apastebin.com+$TERMS"
 
-# Function to open the browser with timeout
 search_pastebin() {
     if ! timeout 10s $SEARCH "$1" 2> /dev/null; then
         echo "Error: Failed to open the browser with the search URL: $1"
