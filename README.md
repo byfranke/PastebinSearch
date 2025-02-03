@@ -16,6 +16,11 @@ This tool automates the process of opening browser tabs with search results, mak
 ### Basic Usage
 
 1. Clone the repository or download the script.
+
+```bash
+git clone https://github.com/byfranke/PastebinSearch
+   ```
+
 2. Make the script executable:
 
    ```bash
