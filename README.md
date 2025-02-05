@@ -72,7 +72,7 @@ pastebinsearch google-chrome password
 ## Example Output
 
 ```bash
-$ ./PastebinSearch social_security_number John
+$ pastebinsearch social_security_number John
 Searching on Pastebin...
 ```
 
