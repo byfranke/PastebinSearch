@@ -15,22 +15,20 @@ This tool automates the process of opening browser tabs with search results, mak
 
 ### Basic Usage
 
-1. Clone the repository or download the script.
-
    ```bash
-   git clone https://github.com/byfranke/PastebinSearch
+   git clone https://github.com/byfranke/pastebinsearch
    ```
 
-2. Make the script executable:
-
    ```bash
-   chmod +x PastebinSearch
+   chmod +x setup.sh
    ```
 
-3. Run the script with your search terms:
+   ```bash
+   bash ./setup.sh
+   ```
 
    ```bash
-   ./PastebinSearch search_term1 search_term2
+   pastebinpearch search_term1 search_term2
    ```
 
 ### Example
@@ -38,7 +36,7 @@ This tool automates the process of opening browser tabs with search results, mak
 To search for **social_security_number** and **John** on Pastebin:
 
 ```bash
-./PastebinSearch social_security_number John
+pastebinsearch social_security_number John
 ```
 
 ### Using a Different Browser
@@ -46,7 +44,7 @@ To search for **social_security_number** and **John** on Pastebin:
 You can specify a browser as the **first argument**. For example, to use **Google Chrome**:
 
 ```bash
-./PastebinSearch google-chrome password
+pastebinsearch google-chrome password
 ```
 
 ## Requirements
