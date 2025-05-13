@@ -5,8 +5,6 @@ Here's the updated **README.md** with the new features and donation section:
 A robust Bash script for security researchers to investigate data leaks on Pastebin across multiple search engines.  
 Now with auto-update functionality, donation support, and enhanced security features.
 
-![CLI Demo](https://byfranke.com/assets/img/Response.webp) 
-
 ## Features
 
 - **Multi-Search Engine Support** - Google, Bing, DuckDuckGo, Yahoo
