@@ -1,0 +1,42 @@
+#!/bin/bash
+
+set -e
+
+SEARCH="firefox"
+
+if [ "$#" -eq 0 ]; then
+    echo "Usage: $0 [browser] search_term1 search_term2 ..."
+    echo "Example: $0 firefox social_security_number John"
+    echo "Example: $0 google-chrome password"
+    exit 1
+fi
+
+if command -v "$1" > /dev/null; then
+    SEARCH="$1"
+    shift
+fi
+
+if ! command -v "$SEARCH" > /dev/null; then
+    echo "Error: Browser '$SEARCH' not found. Please install it or configure a different browser."
+    exit 1
+fi
+
+TERMS=$(echo "$*" | sed 's/ /+/g')
+
+GOOGLE_URL="https://google.com/search?q=site:pastebin.com+intext:$TERMS"
+BING_URL="https://www.bing.com/search?q=site%3Apastebin.com+$TERMS"
+DUCKDUCKGO_URL="https://duckduckgo.com/?q=site:pastebin.com+$TERMS"
+YAHOO_URL="https://search.yahoo.com/search?p=site%3Apastebin.com+$TERMS"
+
+search_pastebin() {
+    if ! timeout 10s $SEARCH "$1" 2> /dev/null; then
+        echo "Error: Failed to open the browser with the search URL: $1"
+        exit 1
+    fi
+}
+
+echo "Searching on Pastebin"
+search_pastebin "$GOOGLE_URL"
+search_pastebin "$BING_URL"
+search_pastebin "$DUCKDUCKGO_URL"
+search_pastebin "$YAHOO_URL"
