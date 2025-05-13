@@ -1,42 +1,161 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
-SEARCH="firefox"
+VERSION="2.0"
+REPO_URL="https://github.com/byfranke/PastebinSearch"
+RAW_URL="https://raw.githubusercontent.com/byfranke/PastebinSearch/main/pastebinsearch"
+INSTALL_PATH="/usr/bin/pastebinsearch"
+DONATE_URL="https://donate.stripe.com/28o8zQ2wY3Dr57G001"
+TMP_FILE=$(mktemp /tmp/pastebinsearch.XXXXXX)
 
-if [ "$#" -eq 0 ]; then
-    echo "Usage: $0 [browser] search_term1 search_term2 ..."
-    echo "Example: $0 firefox social_security_number John"
-    echo "Example: $0 google-chrome password"
-    exit 1
-fi
+# Text formatting
+BOLD=$(tput bold)
+NORMAL=$(tput sgr0)
 
-if command -v "$1" > /dev/null; then
-    SEARCH="$1"
-    shift
-fi
+display_help() {
+    cat <<EOF
 
-if ! command -v "$SEARCH" > /dev/null; then
-    echo "Error: Browser '$SEARCH' not found. Please install it or configure a different browser."
-    exit 1
-fi
+${BOLD}PastebinSearch v${VERSION}${NORMAL}
+A security research tool for searching sensitive data exposures on Pastebin
 
-TERMS=$(echo "$*" | sed 's/ /+/g')
+${BOLD}Usage:${NORMAL}
+  pastebinsearch [OPTION] [BROWSER] SEARCH_TERMS...
 
-GOOGLE_URL="https://google.com/search?q=site:pastebin.com+intext:$TERMS"
-BING_URL="https://www.bing.com/search?q=site%3Apastebin.com+$TERMS"
-DUCKDUCKGO_URL="https://duckduckgo.com/?q=site:pastebin.com+$TERMS"
-YAHOO_URL="https://search.yahoo.com/search?p=site%3Apastebin.com+$TERMS"
+${BOLD}Options:${NORMAL}
+  -h, --help        Show this help message
+  -v, --version     Display version information
+  -u, --update      Update to the latest version
+  -d, --donate      Show donation information
+
+${BOLD}Examples:${NORMAL}
+  pastebinsearch firefox 'credit card' credentials
+  pastebinsearch --update
+  pastebinsearch --donate
+
+${BOLD}Supported Browsers:${NORMAL}
+  firefox, chrome, chromium, brave-browser, opera, lynx
+
+${BOLD}Note:${NORMAL}
+  - Always use proper authorization when searching sensitive data
+  - Consider donating to support development: ${DONATE_URL}
+
+EOF
+}
+
+self_update() {
+    echo "[*] Checking for updates..."
+    
+    if ! command -v curl &> /dev/null; then
+        echo "[!] Error: curl required for updates"
+        exit 1
+    fi
+
+    if ! curl -sSfL "$RAW_URL" -o "$TMP_FILE"; then
+        echo "[!] Failed to download update"
+        rm -f "$TMP_FILE"
+        exit 1
+    fi
+
+    if ! sha_compare "$INSTALL_PATH" "$TMP_FILE"; then
+        echo "[*] Installing new version..."
+        sudo mv "$TMP_FILE" "$INSTALL_PATH"
+        sudo chmod 755 "$INSTALL_PATH"
+        echo "[+] Update successful!"
+        display_donation
+    else
+        echo "[*] Already running latest version"
+        rm -f "$TMP_FILE"
+    fi
+}
+
+sha_compare() {
+    sha1sum "$1" | cut -d' ' -f1 > "${TMP_FILE}.sha1"
+    sha1sum "$2" | cut -d' ' -f1 >> "${TMP_FILE}.sha1"
+    return $(uniq "${TMP_FILE}.sha1" | wc -l | grep -q 1)
+}
+
+display_donation() {
+    cat <<EOF
+
+Support Future Development:
+This tool is maintained by byFranke. If you find it useful,
+please consider supporting its development through donations.
+
+Donation URL: ${DONATE_URL}
+
+EOF
+    read -p "Open donation link in browser? [y/N] " response
+    case "$response" in
+        [yY][eE][sS]|[yY])
+            if ! xdg-open "$DONATE_URL" 2>/dev/null; then
+                echo "[*] Please visit: $DONATE_URL"
+            fi
+            ;;
+    esac
+}
 
 search_pastebin() {
-    if ! timeout 10s $SEARCH "$1" 2> /dev/null; then
-        echo "Error: Failed to open the browser with the search URL: $1"
+    local browser="$1"
+    shift
+    local query=$(echo "$@" | sed 's/ /+/g')
+
+    declare -A SEARCH_ENGINES=(
+        ["Google"]="https://www.google.com/search?q=site:pastebin.com+intext:$query"
+        ["Bing"]="https://www.bing.com/search?q=site%3Apastebin.com+$query"
+        ["DuckDuckGo"]="https://duckduckgo.com/?q=site:pastebin.com+$query"
+        ["Yahoo"]="https://search.yahoo.com/search?p=site%3Apastebin.com+$query"
+    )
+
+    for engine in "${!SEARCH_ENGINES[@]}"; do
+        echo "[*] Searching ${engine}..."
+        timeout 20s "$browser" "${SEARCH_ENGINES[$engine]}" 2>/dev/null || {
+            echo "[!] Timeout occurred on ${engine} search"
+            continue
+        }
+    done
+}
+
+validate_input() {
+    if [ "$#" -eq 0 ]; then
+        display_help
+        exit 1
+    fi
+
+    case "$1" in
+        -h|--help)      display_help; exit 0 ;;
+        -v|--version)   echo "PastebinSearch v${VERSION}"; exit 0 ;;
+        -u|--update)    self_update; exit 0 ;;
+        -d|--donate)   display_donation; exit 0 ;;
+    esac
+
+    if ! command -v "$1" &> /dev/null; then
+        echo "[!] Browser not found: $1"
+        echo "[*] Available browsers:"
+        compgen -c | grep -E 'firefox|chrome|chromium|brave|opera' | sort | uniq
         exit 1
     fi
 }
 
-echo "Searching on Pastebin"
-search_pastebin "$GOOGLE_URL"
-search_pastebin "$BING_URL"
-search_pastebin "$DUCKDUCKGO_URL"
-search_pastebin "$YAHOO_URL"
+main() {
+    validate_input "$@"
+
+    local browser="$1"
+    shift
+
+    if [ "$#" -eq 0 ]; then
+        echo "[!] No search terms provided"
+        display_help
+        exit 1
+    fi
+
+    search_pastebin "$browser" "$@"
+}
+
+cleanup() {
+    rm -f "$TMP_FILE" "${TMP_FILE}.sha1"
+    exit
+}
+
+trap cleanup EXIT INT TERM
+main "$@"
