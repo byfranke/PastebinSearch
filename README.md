@@ -1,82 +1,138 @@
+Here's the updated **README.md** with the new features and donation section:
+
 # Pastebin Search Tool
 
-A simple Bash script to search for terms on Pastebin using popular search engines like Google, Bing, DuckDuckGo, and Yahoo.  
-This tool automates the process of opening browser tabs with search results, making it easier to investigate leaked data or specific content on Pastebin.
+A robust Bash script for security researchers to investigate data leaks on Pastebin across multiple search engines.  
+Now with auto-update functionality, donation support, and enhanced security features.
+
+![CLI Demo](https://via.placeholder.com/800x400.png?text=PastebinSearch+CLI+Demo) <!-- Add actual demo image later -->
 
 ## Features
 
-- **Multi-Search Engine Support** – Searches Pastebin using **Google, Bing, DuckDuckGo, and Yahoo**.
-- **Customizable Browser** – Allows you to specify your preferred browser (e.g., **Firefox, Google Chrome**).
-- **URL Encoding** – Automatically replaces spaces in search terms with `+` for proper URL encoding.
-- **Error Handling** – Provides clear error messages if the browser fails to open or is not found.
-- **Timeout Support** – Ensures the script doesn’t hang if the browser takes too long to open.
+- **Multi-Search Engine Support** - Google, Bing, DuckDuckGo, Yahoo
+- **Auto-Update System** - Keep your tool current with `--update`
+- **Enhanced Security** - SHA-1 checksum verification for safe updates
+- **Browser Compatibility** - Supports Firefox, Chrome, Brave, Opera, Lynx
+- **Professional Grade**:
+  - POSIX-compliant option parsing
+  - Input validation and sanitization
+  - Clean temporary file handling
+  - Graceful error recovery
+
+## New in v2.0
+
+- 🔄 Automatic updates
+- 💰 Donation support
+- 🛠 Improved error handling
+- 🔒 SHA-1 verification
+- 📚 Comprehensive help system
+
+## Installation
+
+### One-Line Install (Recommended)
+```bash
+curl -sSL https://raw.githubusercontent.com/byFranke/PastebinSearch/main/setup.sh | bash
+```
+
+### Manual Installation
+```bash
+git clone https://github.com/byfranke/pastebinsearch
+cd pastebinsearch
+chmod +x setup.sh
+sudo ./setup.sh
+```
 
 ## Usage
 
-### Basic Usage
-
-   ```bash
-   git clone https://github.com/byfranke/pastebinsearch
-   ```
-
-   ```bash
-   chmod +x setup.sh
-   ```
-
-   ```bash
-   bash ./setup.sh
-   ```
-
-   ```bash
-   pastebinpearch search_term1 search_term2
-   ```
-
-### Example
-
-To search for **social_security_number** and **John** on Pastebin:
-
+### Basic Search
 ```bash
-pastebinsearch social_security_number John
+pastebinsearch "credit card" credentials
 ```
 
-### Using a Different Browser
+### Specify Browser
+```bash
+pastebinsearch chromium "API_KEY" "password"
+```
 
-You can specify a browser as the **first argument**. For example, to use **Google Chrome**:
+### Advanced Options
+```bash
+# Update tool
+pastebinsearch --update
+
+# Show version
+pastebinsearch --version
+
+# Display help
+pastebinsearch --help
+
+# Support development
+pastebinsearch --donate
+```
+
+## Donation Support
+
+This tool is maintained through community support. Help keep it active:
+
+[![Donate](https://img.shields.io/badge/Support-Development-blue?style=for-the-badge&logo=github)](https://donate.stripe.com/28o8zQ2wY3Dr57G001)
 
 ```bash
-pastebinsearch google-chrome password
+# Display donation info
+pastebinsearch --donate
 ```
+
+## Key Functionality
+
+1. **Smart Search**:
+   - Automatic URL encoding
+   - Parallel search across engines
+   - 20-second timeout per request
+
+2. **Security**:
+   - Checksum verification
+   - Input sanitization
+   - Privilege separation
+
+3. **Maintenance**:
+   - One-command updates
+   - Dependency checks
+   - Clean uninstall
 
 ## Requirements
 
-- **Bash** – The script is written in **Bash** and should work on most **Unix-like systems**.
-- **A Web Browser** – Firefox is the **default browser**, but you can use any browser installed on your system (e.g., **Google Chrome, Brave**).
+- **Bash 4.4+**
+- **curl** (for updates)
+- **Modern Web Browser**
 
-## How It Works
+## Ethical Guidelines
 
-1. The script checks if search terms are provided. If not, it displays a **usage message** and exits.
-2. It verifies if the **specified browser** is installed. If not, it shows an **error** and exits.
-3. Spaces in the search terms are replaced with **`+`** to ensure proper **URL encoding**.
-4. The script opens browser tabs with **search results** from Google, Bing, DuckDuckGo, and Yahoo, all **filtered** to show results from `pastebin.com`.
+✔️ **Permitted Use**:
+- Security research
+- Data leak prevention
+- Educational purposes
 
-## Error Handling
-
-- If the **browser fails to open** (e.g., due to incorrect configuration or missing installation), the script **displays an error message** and exits.
-- If **no search terms** are provided, the script **shows a usage example** and exits.
-
-## Customization
-
-- **Add More Search Engines** – You can easily add more search engines by defining their URLs and calling the `search_pastebin` function.
-- **Change Default Browser** – Modify the `SEARCH` variable at the top of the script to set your preferred **default browser**.
-
-## Example Output
+❌ **Prohibited Use**:
+- Unauthorized access
+- Malicious activities
+- Privacy violations
 
 ```bash
-$ pastebinsearch social_security_number John
-Searching on Pastebin...
+# Verify installation
+pastebinsearch --version
 ```
 
-This will **open four browser tabs** with search results for **social_security_number** and **John** on Pastebin, using **Google, Bing, DuckDuckGo, and Yahoo**.
+## Development Roadmap
 
-# Disclaimer
-This tool is designed for educational and testing purposes only. The creator strictly discourages and disclaims any responsibility for its use in unauthorized or malicious activities. Always obtain explicit permission before deploying this tool in any environment.
+- [x] Auto-update system
+- [x] Donation integration
+- [ ] Tor network support
+- [ ] JSON output format
+- [ ] Rate limiting
+- [ ] Search history
+
+## Disclaimer
+
+This tool is intended for **authorized security research only**. Users assume full responsibility for complying with all applicable laws and regulations. The maintainer disclaims any liability for misuse.
+
+---
+
+[Report Issues](https://github.com/byFranke/PastebinSearch/issues) | [View Changelog](CHANGELOG.md) 
