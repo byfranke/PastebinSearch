@@ -1,5 +1,3 @@
-Here's the updated **README.md** with the new features and donation section:
-
 # Pastebin Search Tool
 
 A robust Bash script for security researchers to investigate data leaks on Pastebin across multiple search engines.  
