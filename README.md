@@ -65,17 +65,6 @@ pastebinsearch --help
 pastebinsearch --donate
 ```
 
-## Donation Support
-
-This tool is maintained through community support. Help keep it active:
-
-[![Donate](https://img.shields.io/badge/Support-Development-blue?style=for-the-badge&logo=github)](https://donate.stripe.com/28o8zQ2wY3Dr57G001)
-
-```bash
-# Display donation info
-pastebinsearch --donate
-```
-
 ## Key Functionality
 
 1. **Smart Search**:
@@ -132,3 +121,14 @@ This tool is intended for **authorized security research only**. Users assume fu
 ---
 
 [Report Issues](https://github.com/byFranke/PastebinSearch/issues) | [View Changelog](CHANGELOG.md) 
+
+## Donation Support
+
+This tool is maintained through community support. Help keep it active:
+
+[![Donate](https://img.shields.io/badge/Support-Development-blue?style=for-the-badge&logo=github)](https://donate.stripe.com/28o8zQ2wY3Dr57G001)
+
+```bash
+# Display donation info
+pastebinsearch --donate
+```
