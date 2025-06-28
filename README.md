@@ -17,11 +17,11 @@ Now with auto-update functionality, donation support, and enhanced security feat
 
 ## New in v2.0
 
-- 🔄 Automatic updates
-- 💰 Donation support
-- 🛠 Improved error handling
-- 🔒 SHA-1 verification
-- 📚 Comprehensive help system
+- Automatic updates
+- Donation support
+- Improved error handling
+- SHA-1 verification
+- Comprehensive help system
 
 ## Installation
 
@@ -90,12 +90,12 @@ pastebinsearch --donate
 
 ## Ethical Guidelines
 
-✔️ **Permitted Use**:
+**Permitted Use**:
 - Security research
 - Data leak prevention
 - Educational purposes
 
-❌ **Prohibited Use**:
+**Prohibited Use**:
 - Unauthorized access
 - Malicious activities
 - Privacy violations
