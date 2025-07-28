@@ -42,7 +42,7 @@ sudo ./setup.sh
 
 ### Basic Search
 ```bash
-pastebinsearch "credit card" credentials
+pastebinsearch password credentials
 ```
 
 ### Specify Browser
