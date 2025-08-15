@@ -205,11 +205,11 @@ PastebinSearch/
 ├── ⚙️ config/                # Configuration files
 │   └── 🔧 default_config.json
 ├── 📊 logs/                  # Application logs
-└── 🗂️ obsolete/             # Legacy files and documentation
-    ├── 📖 DOCS.md            # Detailed documentation
-    ├── 🔧 INSTALLATION.md    # Installation troubleshooting
-    ├── 📋 USAGE_GUIDE.md     # Comprehensive usage guide
-    └── 🛠️ setup scripts      # Alternative installers
+└── 🗂️ obsolete/              # Legacy files and documentation
+    ├── 🗂️ v1.0               # Legacy pastebinsearch v1.0  
+    ├── 🗂️ v2.0               # Legacy pastebinsearch v2.0
+    ├── 📦 install_helper.py  # Helper install
+    └── 📦 install_kali.py    # Alternative installers
 ```
 
 ---
@@ -454,3 +454,4 @@ Please use the [GitHub Issues](https://github.com/byFranke/PastebinSearch/issues
 This tool is maintained through community support. Help keep it active:
 
 [![Donate](https://img.shields.io/badge/Support-Development-blue?style=for-the-badge&logo=github)](https://donate.stripe.com/28o8zQ2wY3Dr57G001)
+
