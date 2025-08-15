@@ -11,8 +11,6 @@
 
 *Search leaked credentials, API keys, and sensitive information across Pastebin with advanced automation*
 
-![Demo](https://via.placeholder.com/800x400/1e1e1e/ffffff?text=PastebinSearch+Demo)
-
 </div>
 
 ---
@@ -455,5 +453,6 @@ Please use the [GitHub Issues](https://github.com/byFranke/PastebinSearch/issues
 This tool is maintained through community support. Help keep it active:
 
 [![Donate](https://img.shields.io/badge/Support-Development-blue?style=for-the-badge&logo=github)](https://donate.stripe.com/28o8zQ2wY3Dr57G001)
+
 
 
