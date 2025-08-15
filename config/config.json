@@ -1,0 +1,62 @@
+{
+    "general": {
+        "version": "3.0.0",
+        "auto_update": true,
+        "debug_mode": false,
+        "log_level": "INFO"
+    },
+    "search": {
+        "default_limit": 50,
+        "max_results": 200,
+        "timeout": 30,
+        "rate_limit": 2.0,
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+        "proxy": {
+            "enabled": false,
+            "http_proxy": "",
+            "https_proxy": ""
+        }
+    },
+    "browser": {
+        "headless": true,
+        "browser_type": "chromium",
+        "window_size": "1920x1080",
+        "timeout": 30,
+        "auto_download": true,
+        "download_path": "./downloads"
+    },
+    "output": {
+        "format": "table",
+        "save_results": true,
+        "results_path": "./results",
+        "export_formats": [
+            "json",
+            "csv",
+            "txt"
+        ],
+        "timestamp_format": "%Y-%m-%d %H:%M:%S"
+    },
+    "alerts": {
+        "enabled": false,
+        "email": {
+            "enabled": false,
+            "smtp_server": "",
+            "smtp_port": 587,
+            "username": "",
+            "password": "",
+            "recipients": []
+        },
+        "webhook": {
+            "enabled": false,
+            "url": "",
+            "secret": ""
+        }
+    },
+    "advanced": {
+        "concurrent_searches": 3,
+        "retry_attempts": 3,
+        "cache_enabled": true,
+        "cache_duration": 3600,
+        "ssl_verify": false
+    }
+}
