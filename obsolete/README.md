@@ -192,8 +192,6 @@ python3 --version
 
 #### **Dependencies Missing**
 ```bash
-# Run setup to install dependencies
-python setup.py
 # Or install manually
 pip install -r requirements.txt
 ```
@@ -247,5 +245,6 @@ Once migrated, you'll have access to:
 **🎯 Pro Tip**: Start with interactive mode (`python pastebinsearch.py`) to familiarize yourself with all the new features!
 
 **⚠️ Remember**: Always use this tool responsibly and ethically for security research only.
+
 
 
