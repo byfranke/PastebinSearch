@@ -208,6 +208,7 @@ PastebinSearch/
 └── 🗂️ obsolete/              # Legacy files and documentation
     ├── 🗂️ v1.0               # Legacy pastebinsearch v1.0  
     ├── 🗂️ v2.0               # Legacy pastebinsearch v2.0
+    ├── 📚 README.md          # Guide v2.0 to v3.0
     ├── 📦 install_helper.py  # Helper install
     └── 📦 install_kali.py    # Alternative installers
 ```
@@ -454,4 +455,5 @@ Please use the [GitHub Issues](https://github.com/byFranke/PastebinSearch/issues
 This tool is maintained through community support. Help keep it active:
 
 [![Donate](https://img.shields.io/badge/Support-Development-blue?style=for-the-badge&logo=github)](https://donate.stripe.com/28o8zQ2wY3Dr57G001)
+
 
