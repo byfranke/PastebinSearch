@@ -215,7 +215,6 @@ python pastebinsearch.py --config
 ```
 
 ### **Getting Help**
-- 📖 **Documentation**: Check `DOCUMENTATION.md`
 - 🐛 **Issues**: Report on GitHub
 - 💬 **Support**: Contact support@byfranke.com
 
@@ -251,3 +250,4 @@ Once migrated, you'll have access to:
 **🎯 Pro Tip**: Start with interactive mode (`python pastebinsearch.py`) to familiarize yourself with all the new features!
 
 **⚠️ Remember**: Always use this tool responsibly and ethically for security research only.
+
