@@ -34,9 +34,6 @@ cp -r logs/ logs_v2_backup/ 2>/dev/null || true
 # Navigate to the new PastebinSearch directory
 cd PastebinSearch
 
-# Run setup to check dependencies and install
-python setup.py
-
 # Or run the main application directly
 python pastebinsearch.py --install
 ```
@@ -250,4 +247,5 @@ Once migrated, you'll have access to:
 **🎯 Pro Tip**: Start with interactive mode (`python pastebinsearch.py`) to familiarize yourself with all the new features!
 
 **⚠️ Remember**: Always use this tool responsibly and ethically for security research only.
+
 
