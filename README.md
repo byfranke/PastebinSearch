@@ -188,11 +188,11 @@ pastebinsearch --help
 
 ```
 PastebinSearch/
-├── 📄 install.py              # Universal installer (START HERE)
-├── 🔍 pastebinsearch.py       # Main application
-├── 📚 README.md               # This documentation
-├── 📦 requirements.txt        # Python dependencies  
-├── 📜 LICENSE                 # License
+├── 📄 install.py             # Universal installer (START HERE)
+├── 🔍 pastebinsearch.py      # Main application
+├── 📚 README.md              # This documentation
+├── 📦 requirements.txt       # Python dependencies  
+├── 📜 LICENSE                # License
 ├── 📁 modules/               # Core functionality
 │   ├── 🔧 config_manager.py  # Configuration management
 │   ├── 🎨 ui_manager.py      # User interface components
@@ -320,28 +320,6 @@ export PASTEBINSEARCH_CONFIG="/path/to/config.json"
 
 We welcome contributions from the security research community!
 
-### 🚀 **Quick Start for Contributors**
-```bash
-# Fork the repository
-git clone https://github.com/your-username/PastebinSearch.git
-cd PastebinSearch
-
-# Create development environment
-python -m venv dev_env
-source dev_env/bin/activate  # Linux/macOS
-# or
-dev_env\Scripts\activate  # Windows
-
-# Install development dependencies
-pip install -r requirements.txt
-pip install pytest black flake8
-
-# Run tests
-pytest tests/
-
-# Format code
-black pastebinsearch.py modules/
-```
 
 ### 📋 **Contribution Guidelines**
 1. **Fork** the repository
@@ -397,11 +375,6 @@ Please use the [GitHub Issues](https://github.com/byFranke/PastebinSearch/issues
 - **BeautifulSoup** - HTML parsing
 - **Loguru** - Advanced logging
 
-### 📚 **Resources**
-- **Pastebin** - Primary target platform
-- **DuckDuckGo** - Primary search engine
-- **OWASP** - Security guidelines and best practices
-
 ---
 
 ## 📞 Support & Contact
@@ -427,12 +400,6 @@ Please use the [GitHub Issues](https://github.com/byFranke/PastebinSearch/issues
 - **Maintenance**: Actively maintained
 - **Testing**: Tested on Windows 10/11, Linux (Ubuntu, Kali), macOS
 
-### 🗺️ **Roadmap**
-- **v3.1**: Additional search engines integration
-- **v3.2**: Machine learning for result relevance
-- **v3.3**: API for programmatic access
-- **v4.0**: Web interface and dashboard
-
 ---
 
 <div align="center">
@@ -453,6 +420,7 @@ Please use the [GitHub Issues](https://github.com/byFranke/PastebinSearch/issues
 This tool is maintained through community support. Help keep it active:
 
 [![Donate](https://img.shields.io/badge/Support-Development-blue?style=for-the-badge&logo=github)](https://donate.stripe.com/28o8zQ2wY3Dr57G001)
+
 
 
 
