@@ -374,7 +374,7 @@ webdriver-manager>=4.0.0
         """Update README.md with new installation instructions"""
         print("📚 Updating README.md...")
         
-        readme_content = """# 🔍 PastebinSearch v3.0
+        readme_content = """# 🔍 PastebinSearch v3.1.1
 
 Advanced security research tool for searching Pastebin with multiple search engines and automation features.
 
@@ -563,3 +563,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
