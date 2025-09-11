@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PastebinSearch v3.0 - Advanced Security Research Tool
+PastebinSearch v3.1.1 - Advanced Security Research Tool
 Author: byFranke
 Description: Modern Python-based tool for searching Pastebin with enhanced UI and automation
 """
@@ -481,6 +481,7 @@ This tool is maintained by byFranke Universe. If you find it useful,
 please consider supporting its development through donations.
 
 [bold green]Donation URL:[/bold green] https://donate.stripe.com/28o8zQ2wY3Dr57G001
+[bold green]BTC:[/bold green] bc1qk5f0rmpaecwnx334k4w0ek80f72ffsgsuat3nt
 
 [bold]🎯 Your support helps:[/bold]
 • Maintain and improve the tool
@@ -580,3 +581,4 @@ if __name__ == "__main__":
         asyncio.run(main())
     except KeyboardInterrupt:
         print("\n👋 Goodbye!")
+
