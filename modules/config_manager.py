@@ -26,7 +26,7 @@ class ConfigManager:
         """Get default configuration"""
         return {
             "general": {
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "auto_update": True,
                 "debug_mode": False,
                 "log_level": "INFO"

@@ -45,7 +45,7 @@ class PastebinSearchTool:
         self.logger = SearchLogger()
         self.search_engine = None
         self.browser_manager = None
-        self.version = "3.0.0"
+        self.version = "3.1.0"
         self.banner_shown = False
         
     def show_banner(self):

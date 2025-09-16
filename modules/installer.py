@@ -20,7 +20,7 @@ class ToolInstaller:
     def __init__(self):
         self.system = platform.system().lower()
         self.tool_name = "PastebinSearch"
-        self.version = "3.0.0"
+        self.version = "3.1.0"
         self.python_min_version = (3, 8)
         
         # Installation paths
@@ -870,7 +870,7 @@ Happy searching! 🔍
                     download_url = f"https://github.com/byFranke/PastebinSearch/archive/refs/tags/v{latest_version}.zip"
                     
                     print(f"📦 Latest version available: v{latest_version}")
-                    print(f"💾 Current version: v3.0.0")
+                    print(f"💾 Current version: v3.1.0")
                     
                     # For now, show migration info for v2.0 users
                     if self.detect_v2_installation():

@@ -395,7 +395,7 @@ Please use the [GitHub Issues](https://github.com/byFranke/PastebinSearch/issues
 ## Project Status
 
 ### Current Status: Stable
-- **Version**: 3.0.0
+- **Version**: 3.1.0
 - **Last Updated**: August 2025  
 - **Maintenance**: Actively maintained
 - **Testing**: Tested on Windows 10/11, Linux (Ubuntu, Kali), macOS
