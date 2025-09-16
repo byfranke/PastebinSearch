@@ -1,10 +1,10 @@
-# 🔄 PastebinSearch Migration Guide - v2.0 to v3.0
+# PastebinSearch Migration Guide - v2.0 to v3.0
 
-## 📋 Overview
+## Overview
 
 This guide helps you migrate from PastebinSearch v2.0 (Bash) to v3.0 (Python).
 
-## 🎯 Key Changes
+## Key Changes
 
 ### **v2.0 (Bash) → v3.0 (Python)**
 
@@ -19,7 +19,7 @@ This guide helps you migrate from PastebinSearch v2.0 (Bash) to v3.0 (Python).
 | Logging | Basic logs | Comprehensive logging system |
 | Installation | Copy script | Full installer with dependencies |
 
-## 🚀 Migration Steps
+## Migration Steps
 
 ### **Step 1: Backup Current Setup**
 ```bash
@@ -78,7 +78,7 @@ python pastebinsearch.py
 # No equivalent in v2.0 - new feature!
 ```
 
-## 📊 Feature Comparison
+## Feature Comparison
 
 ### **Retained Features**
 ✅ Basic search functionality  
@@ -103,7 +103,7 @@ python pastebinsearch.py
 🆕 **Real-time Monitoring**: Monitor pages for changes  
 🆕 **Professional Installer**: Full installation system  
 
-## 🔧 Configuration Migration
+## Configuration Migration
 
 ### **Manual Migration**
 1. **Identify your v2.0 settings** (environment variables, custom scripts)
@@ -116,7 +116,7 @@ python pastebinsearch.py
 python pastebinsearch.py --migrate-from-v2 /path/to/old/config
 ```
 
-## 📁 Data Migration
+## Data Migration
 
 ### **Search Results**
 ```bash
@@ -135,7 +135,7 @@ python pastebinsearch.py --migrate-from-v2 /path/to/old/config
 cp old_logs/* PastebinSearch/logs/legacy/ 2>/dev/null || true
 ```
 
-## 🎯 Learning the New Interface
+## Learning the New Interface
 
 ### **v2.0 Workflow**
 ```bash
@@ -163,7 +163,7 @@ python pastebinsearch.py --config
 # Configure your preferences, then use the tool
 ```
 
-## 🔍 Testing Migration
+## Testing Migration
 
 ### **Verify Installation**
 ```bash
@@ -179,7 +179,7 @@ python pastebinsearch.py --help
 python pastebinsearch.py --search "test term"
 ```
 
-## 🚨 Troubleshooting
+## Troubleshooting
 
 ### **Common Issues**
 
@@ -213,7 +213,7 @@ python pastebinsearch.py --config
 - 🐛 **Issues**: Report on GitHub
 - 💬 **Support**: Contact support@byfranke.com
 
-## 🎉 Migration Complete!
+## Migration Complete!
 
 Once migrated, you'll have access to:
 
@@ -229,7 +229,7 @@ Once migrated, you'll have access to:
 - 📈 **Search History**: Track and analyze searches
 - 🔔 **Monitoring**: Real-time change detection
 
-## 📋 Checklist
+## Checklist
 
 - [ ] Backup v2.0 data (if applicable)
 - [ ] Install Python 3.8+
@@ -242,9 +242,9 @@ Once migrated, you'll have access to:
 
 ---
 
-**🎯 Pro Tip**: Start with interactive mode (`python pastebinsearch.py`) to familiarize yourself with all the new features!
+**Pro Tip**: Start with interactive mode (`python pastebinsearch.py`) to familiarize yourself with all the new features!
 
-**⚠️ Remember**: Always use this tool responsibly and ethically for security research only.
+**Remember**: Always use this tool responsibly and ethically for security research only.
 
 
 
