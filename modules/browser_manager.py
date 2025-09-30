@@ -1,3 +1,4 @@
+
 """
 Browser Manager for PastebinSearch Tool
 Handles browser automation and monitoring
@@ -497,3 +498,4 @@ class BrowserManager:
             return self.browser is not None and self.page is not None
         else:
             return self.selenium_driver is not None
+
