@@ -1,3 +1,4 @@
+
 # Pastebin Search Tool
 
 A simple Bash script to search for terms on Pastebin using popular search engines like Google, Bing, DuckDuckGo, and Yahoo.  
