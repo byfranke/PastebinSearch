@@ -1,3 +1,4 @@
+
 """
 Logger for PastebinSearch Tool
 Handles logging, search history, and activity tracking
@@ -493,3 +494,4 @@ class SearchLogger:
             self.log_error(f"Log search failed: {e}")
         
         return results
+
