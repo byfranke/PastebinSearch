@@ -1,3 +1,4 @@
+
 """
 UI Manager for PastebinSearch Tool
 Handles all user interface elements and display functions
@@ -475,3 +476,4 @@ class UIManager:
 [/cyan]
         """
         self.console.print(logo)
+
