@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """
 🐧 PastebinSearch - Kali Linux / Ubuntu 23+ Installer
 Specialized installer for systems with externally-managed Python environments
@@ -311,3 +312,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
