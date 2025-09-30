@@ -37,6 +37,8 @@ search_pastebin() {
 
 echo "Searching on Pastebin"
 search_pastebin "$GOOGLE_URL"
+
+
 search_pastebin "$BING_URL"
 search_pastebin "$DUCKDUCKGO_URL"
 search_pastebin "$YAHOO_URL"
