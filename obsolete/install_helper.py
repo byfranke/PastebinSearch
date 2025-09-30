@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """
 🛠️ PastebinSearch - Interactive Installation Helper
 User-friendly installer with guided setup and troubleshooting
@@ -432,3 +433,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
