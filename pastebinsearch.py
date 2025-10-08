@@ -70,12 +70,12 @@ class PastebinSearchTool:
   --help             : Show this help
 
 [yellow]SEARCH MODES:[/yellow]
-  🤖 [bold]Automatic Mode[/bold] (--search):
+  [bold]Automatic Mode[/bold] (--search):
      • Tries DuckDuckGo, Google, Bing, Pastebin Archive
      • Works for most terms: password, database, api, config
      • Fast and convenient
 
-  🌐 [bold]Manual Mode[/bold] (--manual):
+  [bold]Manual Mode[/bold] (--manual):
      • Opens browser tabs for manual searching
      • Better for blocked/sensitive terms
      • More reliable against anti-bot measures
@@ -102,7 +102,7 @@ class PastebinSearchTool:
             config = await self.config_manager.load_config()
             self.search_engine = PastebinSearchEngine(config)
         
-        self.console.print(f"\n[green]🔍 Searching for:[/green] {search_term}")
+        self.console.print(f"\n[green]Searching for:[/green] {search_term}")
         
         with Progress(
             SpinnerColumn(),
@@ -120,7 +120,7 @@ class PastebinSearchTool:
                     self.ui_manager.display_results(results, search_term)
                     self.logger.log_search(search_term, len(results))
                 else:
-                    self.console.print("[yellow]⚠️  No results found[/yellow]")
+                    self.console.print("[yellow]No results found[/yellow]")
                     
             except Exception as e:
                 progress.remove_task(task)
@@ -140,7 +140,7 @@ class PastebinSearchTool:
                         "Check your internet connection and firewall settings. Run '--diagnose' for more info."
                     )
                 else:
-                    self.console.print(f"[red]❌ Search error: {error_msg}[/red]")
+                    self.console.print(f"[red]Search error: {error_msg}[/red]")
                 
                 self.logger.log_error(f"Search error: {error_msg}")
             
@@ -157,7 +157,7 @@ class PastebinSearchTool:
             config = await self.config_manager.load_config()
             self.search_engine = PastebinSearchEngine(config)
         
-        self.console.print(f"\n[green]🔍 Manual Search Mode for:[/green] {search_term}")
+        self.console.print(f"\n[green]Manual Search Mode for:[/green] {search_term}")
         
         try:
             # Force manual search directly
@@ -167,11 +167,11 @@ class PastebinSearchTool:
                 self.ui_manager.display_results(results, search_term)
                 self.logger.log_search(f"{search_term} (manual)", len(results))
             else:
-                self.console.print("[yellow]⚠️  Manual search completed[/yellow]")
+                self.console.print("[yellow]Manual search completed[/yellow]")
                 
         except Exception as e:
             error_msg = str(e)
-            self.console.print(f"[red]❌ Manual search error: {error_msg}[/red]")
+            self.console.print(f"[red]Manual search error: {error_msg}[/red]")
             self.logger.log_error(f"Manual search error: {error_msg}")
         
         finally:
@@ -183,7 +183,7 @@ class PastebinSearchTool:
         """Diagnose connectivity issues"""
         self.show_banner()
         
-        self.console.print("[cyan]🔍 Running connectivity diagnostics...[/cyan]\n")
+        self.console.print("[cyan]Running connectivity diagnostics...[/cyan]\n")
         
         if not self.search_engine:
             config = await self.config_manager.load_config()
@@ -205,11 +205,11 @@ class PastebinSearchTool:
                 status_color = "green" if results['pastebin_reachable'] else "red"
                 ssl_color = "green" if results['ssl_working'] else "yellow"
                 
-                self.console.print(f"[{status_color}]🌐 Pastebin Reachable:[/{status_color}] {results['pastebin_reachable']}")
-                self.console.print(f"[{ssl_color}]🔒 SSL Working:[/{ssl_color}] {results['ssl_working']}")
+                self.console.print(f"[{status_color}]Pastebin Reachable:[/{status_color}] {results['pastebin_reachable']}")
+                self.console.print(f"[{ssl_color}]SSL Working:[/{ssl_color}] {results['ssl_working']}")
                 
                 if results['response_time'] > 0:
-                    self.console.print(f"[blue]⏱️  Response Time:[/blue] {results['response_time']:.2f}s")
+                    self.console.print(f"[blue]Response Time:[/blue] {results['response_time']:.2f}s")
                 
                 if results['error_details']:
                     self.ui_manager.show_error_message(
@@ -263,17 +263,17 @@ class PastebinSearchTool:
                     self.show_about()
                 elif choice == "0":
                     if Confirm.ask("[yellow]Are you sure you want to exit?[/yellow]"):
-                        self.console.print("[green]👋 Goodbye![/green]")
+                        self.console.print("[green]Goodbye![/green]")
                         break
                 else:
                     self.console.print("[red]Invalid option. Please try again.[/red]")
                     
             except KeyboardInterrupt:
-                self.console.print("\n[yellow]⚠️  Operation cancelled[/yellow]")
+                self.console.print("\n[yellow]Operation cancelled[/yellow]")
                 if Confirm.ask("[yellow]Exit the tool?[/yellow]"):
                     break
             except Exception as e:
-                self.console.print(f"[red]❌ Error: {str(e)}[/red]")
+                self.console.print(f"[red]Error: {str(e)}[/red]")
                 self.logger.log_error(f"Interactive mode error: {str(e)}")
     
     async def handle_search_menu(self):
@@ -358,7 +358,7 @@ class PastebinSearchTool:
     
     async def advanced_search(self):
         """Handle advanced search with filters"""
-        self.console.print("\n[bold cyan]🔧 Advanced Search Configuration[/bold cyan]")
+        self.console.print("\n[bold cyan]Advanced Search Configuration[/bold cyan]")
         
         search_term = Prompt.ask("[cyan]Search term")
         date_range = Prompt.ask("[cyan]Date range (days)", default="7")
@@ -380,14 +380,14 @@ class PastebinSearchTool:
             with open(file_path, 'r') as f:
                 terms = [line.strip() for line in f if line.strip()]
             
-            self.console.print(f"[green]📂 Found {len(terms)} search terms[/green]")
+            self.console.print(f"[green]Found {len(terms)} search terms[/green]")
             
             for i, term in enumerate(terms, 1):
-                self.console.print(f"\n[yellow]🔍 Search {i}/{len(terms)}: {term}[/yellow]")
+                self.console.print(f"\n[yellow]Search {i}/{len(terms)}: {term}[/yellow]")
                 await self.quick_search(term)
                 await asyncio.sleep(1)  # Rate limiting
         else:
-            self.console.print("[red]❌ File not found[/red]")
+            self.console.print("[red]File not found[/red]")
     
     async def perform_search_with_filters(self, search_term: str, filters: Dict):
         """Perform search with advanced filters"""
@@ -407,10 +407,10 @@ class PastebinSearchTool:
                     self.ui_manager.display_results(results, search_term)
                     self.logger.log_search(f"{search_term} (advanced)", len(results))
                 else:
-                    self.console.print("[yellow]⚠️  No results found with current filters[/yellow]")
+                    self.console.print("[yellow]No results found with current filters[/yellow]")
                     
             except Exception as e:
-                self.console.print(f"[red]❌ Search error: {str(e)}[/red]")
+                self.console.print(f"[red]Search error: {str(e)}[/red]")
                 self.logger.log_error(f"Advanced search error: {str(e)}")
     
     def show_search_history(self):
@@ -432,27 +432,27 @@ class PastebinSearchTool:
             
             self.console.print(table)
         else:
-            self.console.print("[yellow]⚠️  No search history found[/yellow]")
+            self.console.print("[yellow]No search history found[/yellow]")
     
     def show_recent_results(self):
         """Display recent search results"""
-        self.console.print("[cyan]📊 Recent Results Feature - Coming Soon[/cyan]")
+        self.console.print("[cyan]Recent Results Feature - Coming Soon[/cyan]")
     
     def export_results(self):
         """Export results to file"""
-        self.console.print("[cyan]📄 Export Feature - Coming Soon[/cyan]")
+        self.console.print("[cyan]Export Feature - Coming Soon[/cyan]")
     
     def clear_results(self):
         """Clear stored results"""
         if Confirm.ask("[yellow]Clear all stored results?[/yellow]"):
-            self.console.print("[green]✅ Results cleared[/green]")
+            self.console.print("[green]Results cleared[/green]")
     
     def show_about(self):
         """Show about information"""
         about_text = f"""
 [bold cyan]PastebinSearch v{self.version}[/bold cyan]
 
-[yellow]🔧 Advanced Security Research Tool[/yellow]
+[yellow]Advanced Security Research Tool[/yellow]
 
 [green]Features:[/green]
 • Interactive CLI with rich interface
@@ -466,7 +466,7 @@ class PastebinSearchTool:
 [green]License:[/green] MIT
 [green]Repository:[/green] github.com/byfranke/pastebinsearch
 
-[red]⚠️  Legal Notice:[/red]
+[red]Legal Notice:[/red]
 This tool is for legitimate security research only.
 Always respect robots.txt and terms of service.
         """
@@ -475,7 +475,7 @@ Always respect robots.txt and terms of service.
     def show_donation_info(self):
         """Show donation information (backward compatibility with v2.0)"""
         donation_text = """
-[yellow]💖 Support PastebinSearch Development[/yellow]
+[yellow]Support PastebinSearch Development[/yellow]
 
 This tool is maintained by byFranke Universe. If you find it useful,
 please consider supporting its development through donations.
@@ -483,7 +483,7 @@ please consider supporting its development through donations.
 [bold green]Donation URL:[/bold green] https://donate.stripe.com/28o8zQ2wY3Dr57G001
 [bold green]BTC:[/bold green] bc1qk5f0rmpaecwnx334k4w0ek80f72ffsgsuat3nt
 
-[bold]🎯 Your support helps:[/bold]
+[bold]Your support helps:[/bold]
 • Maintain and improve the tool
 • Add new security features  
 • Provide community support
@@ -491,7 +491,7 @@ please consider supporting its development through donations.
 
 [italic]Thank you for using PastebinSearch responsibly![/italic]
         """
-        self.console.print(Panel(donation_text, title="💖 Donate", border_style="yellow"))
+        self.console.print(Panel(donation_text, title="Donate", border_style="yellow"))
         
         # Ask if user wants to open donation link
         from rich.prompt import Confirm
@@ -499,7 +499,7 @@ please consider supporting its development through donations.
             import webbrowser
             try:
                 webbrowser.open("https://donate.stripe.com/28o8zQ2wY3Dr57G001")
-                self.console.print("[green]✅ Donation page opened in browser[/green]")
+                self.console.print("[green]Donation page opened in browser[/green]")
             except Exception:
                 self.console.print("[yellow]Please visit: https://donate.stripe.com/28o8zQ2wY3Dr57G001[/yellow]")
 
@@ -565,20 +565,20 @@ async def main():
             await tool.interactive_mode()
             
     except KeyboardInterrupt:
-        tool.console.print("\n[yellow]⚠️  Operation cancelled by user[/yellow]")
+        tool.console.print("\n[yellow]Operation cancelled by user[/yellow]")
     except Exception as e:
-        tool.console.print(f"[red]❌ Fatal error: {str(e)}[/red]")
+        tool.console.print(f"[red]Fatal error: {str(e)}[/red]")
         sys.exit(1)
 
 if __name__ == "__main__":
     # Check Python version
     if sys.version_info < (3, 8):
-        print("❌ Python 3.8 or higher is required")
+        print("Python 3.8 or higher is required")
         sys.exit(1)
     
     # Run the tool
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-        print("\n👋 Goodbye!")
+        print("\nGoodbye!")
 

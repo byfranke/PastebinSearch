@@ -45,7 +45,7 @@ class UIManager:
 ╚═╝     ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═════╝ ╚═╝╚═╝  ╚═══╝    ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
 [/bold cyan]
 
-[bold white]                               🔍 Advanced Security Research Tool v{version} 🔍[/bold white]
+[bold white]                               Advanced Security Research Tool v{version}[/bold white]
 [dim]                                     byFranke - https://byfranke.com[/dim]
         """
         
@@ -62,10 +62,10 @@ class UIManager:
         import sys
         
         system_info = f"""
-[green]🖥️  System:[/green] {platform.system()} {platform.release()}
-[green]🐍 Python:[/green] {sys.version.split()[0]}
-[green]⚡ Status:[/green] Ready for Security Research
-[yellow]⚠️  Legal:[/yellow] Use responsibly and ethically only
+[green]System:[/green] {platform.system()} {platform.release()}
+[green]Python:[/green] {sys.version.split()[0]}
+[green]Status:[/green] Ready for Security Research
+[yellow]Legal:[/yellow] Use responsibly and ethically only
         """
         
         self.console.print(Panel(
@@ -80,13 +80,13 @@ class UIManager:
     def show_main_menu(self) -> str:
         """Display main menu and get user choice"""
         menu_items = [
-            ("1", "🔍 Search Options", "Perform searches with various filters"),
-            ("2", "🌐 Browser Automation", "Manage browser automation features"),
-            ("3", "⚙️  Configuration", "Manage tool settings and preferences"),
-            ("4", "📊 Results Management", "View and manage search results"),
-            ("5", "📋 Logs & History", "View logs and search history"),
-            ("6", "ℹ️  About & Help", "Tool information and help"),
-            ("0", "❌ Exit", "Close the application")
+            ("1", "Search Options", "Perform searches with various filters"),
+            ("2", "Browser Automation", "Manage browser automation features"),
+            ("3", "Configuration", "Manage tool settings and preferences"),
+            ("4", "Results Management", "View and manage search results"),
+            ("5", "Logs & History", "View logs and search history"),
+            ("6", "About & Help", "Tool information and help"),
+            ("0", "Exit", "Close the application")
         ]
         
         menu_text = "\n".join([
@@ -97,7 +97,7 @@ class UIManager:
         
         panel = Panel(
             menu_text,
-            title="🏠 Main Menu",
+            title="Main Menu",
             border_style=self.theme_colors['primary'],
             padding=(1, 2)
         )
@@ -113,11 +113,11 @@ class UIManager:
     def show_search_menu(self) -> str:
         """Display search submenu"""
         menu_items = [
-            ("1", "🔍 Quick Search", "Simple term search"),
-            ("2", "🔧 Advanced Search", "Search with filters and options"),
-            ("3", "📂 Batch Search", "Search multiple terms from file"),
-            ("4", "📈 Search History", "View previous searches"),
-            ("0", "🔙 Back to Main", "Return to main menu")
+            ("1", "Quick Search", "Simple term search"),
+            ("2", "Advanced Search", "Search with filters and options"),
+            ("3", "Batch Search", "Search multiple terms from file"),
+            ("4", "Search History", "View previous searches"),
+            ("0", "Back to Main", "Return to main menu")
         ]
         
         menu_text = "\n".join([
@@ -128,7 +128,7 @@ class UIManager:
         
         self.console.print(Panel(
             menu_text,
-            title="🔍 Search Options",
+            title="Search Options",
             border_style=self.theme_colors['secondary']
         ))
         
@@ -141,11 +141,11 @@ class UIManager:
     def show_browser_menu(self) -> str:
         """Display browser automation submenu"""
         menu_items = [
-            ("1", "🚀 Start Browser", "Launch automated browser"),
-            ("2", "🎯 Auto Navigate", "Navigate to specific URLs"),
-            ("3", "👁️  Monitor Changes", "Watch for page changes"),
-            ("4", "🛑 Stop Browser", "Close browser session"),
-            ("0", "🔙 Back to Main", "Return to main menu")
+            ("1", "Start Browser", "Launch automated browser"),
+            ("2", "Auto Navigate", "Navigate to specific URLs"),
+            ("3", "Monitor Changes", "Watch for page changes"),
+            ("4", "Stop Browser", "Close browser session"),
+            ("0", "Back to Main", "Return to main menu")
         ]
         
         menu_text = "\n".join([
@@ -156,7 +156,7 @@ class UIManager:
         
         self.console.print(Panel(
             menu_text,
-            title="🌐 Browser Automation",
+            title="Browser Automation",
             border_style=self.theme_colors['info']
         ))
         
@@ -169,11 +169,11 @@ class UIManager:
     def show_config_menu(self) -> str:
         """Display configuration submenu"""
         menu_items = [
-            ("1", "✏️  Edit Settings", "Interactive configuration editor"),
-            ("2", "📤 Export Config", "Export configuration to file"),
-            ("3", "📥 Import Config", "Import configuration from file"),
-            ("4", "🔄 Reset to Defaults", "Reset all settings to default"),
-            ("0", "🔙 Back to Main", "Return to main menu")
+            ("1", "Edit Settings", "Interactive configuration editor"),
+            ("2", "Export Config", "Export configuration to file"),
+            ("3", "Import Config", "Import configuration from file"),
+            ("4", "Reset to Defaults", "Reset all settings to default"),
+            ("0", "Back to Main", "Return to main menu")
         ]
         
         menu_text = "\n".join([
@@ -184,7 +184,7 @@ class UIManager:
         
         self.console.print(Panel(
             menu_text,
-            title="⚙️ Configuration",
+            title="Configuration",
             border_style=self.theme_colors['warning']
         ))
         
@@ -197,10 +197,10 @@ class UIManager:
     def show_results_menu(self) -> str:
         """Display results management submenu"""
         menu_items = [
-            ("1", "📊 Recent Results", "View recent search results"),
-            ("2", "💾 Export Results", "Export results to various formats"),
-            ("3", "🗑️  Clear Results", "Clear stored results"),
-            ("0", "🔙 Back to Main", "Return to main menu")
+            ("1", "Recent Results", "View recent search results"),
+            ("2", "Export Results", "Export results to various formats"),
+            ("3", "Clear Results", "Clear stored results"),
+            ("0", "Back to Main", "Return to main menu")
         ]
         
         menu_text = "\n".join([
@@ -211,7 +211,7 @@ class UIManager:
         
         self.console.print(Panel(
             menu_text,
-            title="📊 Results Management",
+            title="Results Management",
             border_style=self.theme_colors['success']
         ))
         
@@ -224,11 +224,11 @@ class UIManager:
     def show_logs_menu(self) -> str:
         """Display logs submenu"""
         menu_items = [
-            ("1", "📋 Recent Logs", "View recent activity logs"),
-            ("2", "❌ Error Logs", "View error logs only"),
-            ("3", "🧹 Clear Logs", "Clear all log files"),
-            ("4", "📤 Export Logs", "Export logs to file"),
-            ("0", "🔙 Back to Main", "Return to main menu")
+            ("1", "Recent Logs", "View recent activity logs"),
+            ("2", "Error Logs", "View error logs only"),
+            ("3", "Clear Logs", "Clear all log files"),
+            ("4", "Export Logs", "Export logs to file"),
+            ("0", "Back to Main", "Return to main menu")
         ]
         
         menu_text = "\n".join([
@@ -239,7 +239,7 @@ class UIManager:
         
         self.console.print(Panel(
             menu_text,
-            title="📋 Logs & History",
+            title="Logs & History",
             border_style=self.theme_colors['accent']
         ))
         
@@ -252,12 +252,12 @@ class UIManager:
     def display_results(self, results: List[Dict[str, Any]], search_term: str):
         """Display search results in a formatted table"""
         if not results:
-            self.console.print(f"[{self.theme_colors['warning']}]⚠️  No results found for: {search_term}[/{self.theme_colors['warning']}]")
+            self.console.print(f"[{self.theme_colors['warning']}]No results found for: {search_term}[/{self.theme_colors['warning']}]")
             return
         
         # Create results table
         table = Table(
-            title=f"🔍 Search Results for: '{search_term}' ({len(results)} found)",
+            title=f"Search Results for: '{search_term}' ({len(results)} found)",
             box=box.ROUNDED,
             show_header=True,
             header_style="bold cyan"
@@ -309,7 +309,7 @@ class UIManager:
                                  for keyword in ['password', 'key', 'token', 'secret', 'credential']))
         
         if sensitive_count > 0:
-            alert_text = f"[bold red]🚨 SECURITY ALERT:[/bold red] Found {sensitive_count} potentially sensitive results!"
+            alert_text = f"[bold red]SECURITY ALERT:[/bold red] Found {sensitive_count} potentially sensitive results!"
             self.console.print(Panel(
                 alert_text,
                 border_style="red",
@@ -330,7 +330,7 @@ class UIManager:
     
     def show_error_message(self, title: str, message: str, details: Optional[str] = None):
         """Display error message in a formatted panel"""
-        error_content = f"[bold red]❌ {title}[/bold red]\n\n{message}"
+        error_content = f"[bold red]{title}[/bold red]\n\n{message}"
         
         if details:
             error_content += f"\n\n[dim]Details: {details}[/dim]"
@@ -343,7 +343,7 @@ class UIManager:
     
     def show_success_message(self, title: str, message: str):
         """Display success message in a formatted panel"""
-        success_content = f"[bold green]✅ {title}[/bold green]\n\n{message}"
+        success_content = f"[bold green]{title}[/bold green]\n\n{message}"
         
         self.console.print(Panel(
             success_content,
@@ -353,7 +353,7 @@ class UIManager:
     
     def show_warning_message(self, title: str, message: str):
         """Display warning message in a formatted panel"""
-        warning_content = f"[bold yellow]⚠️  {title}[/bold yellow]\n\n{message}"
+        warning_content = f"[bold yellow]{title}[/bold yellow]\n\n{message}"
         
         self.console.print(Panel(
             warning_content,
@@ -363,7 +363,7 @@ class UIManager:
     
     def show_info_message(self, title: str, message: str):
         """Display info message in a formatted panel"""
-        info_content = f"[bold blue]ℹ️  {title}[/bold blue]\n\n{message}"
+        info_content = f"[bold blue]{title}[/bold blue]\n\n{message}"
         
         self.console.print(Panel(
             info_content,
@@ -373,7 +373,7 @@ class UIManager:
     
     def display_search_stats(self, stats: Dict[str, Any]):
         """Display search statistics"""
-        stats_table = Table(title="📈 Search Statistics", box=box.SIMPLE)
+        stats_table = Table(title="Search Statistics", box=box.SIMPLE)
         stats_table.add_column("Metric", style="cyan")
         stats_table.add_column("Value", style="yellow", justify="right")
         
@@ -384,7 +384,7 @@ class UIManager:
     
     def show_configuration_tree(self, config: Dict[str, Any]):
         """Display configuration in a tree structure"""
-        tree = Tree("🔧 Configuration", style="cyan")
+        tree = Tree("Configuration", style="cyan")
         
         for section, values in config.items():
             section_branch = tree.add(f"[yellow]{section.title()}[/yellow]")
@@ -432,7 +432,7 @@ class UIManager:
     def show_keyboard_shortcuts(self):
         """Display keyboard shortcuts help"""
         shortcuts_text = """
-[bold cyan]⌨️  Keyboard Shortcuts[/bold cyan]
+[bold cyan]Keyboard Shortcuts[/bold cyan]
 
 [yellow]Navigation:[/yellow]
 • Ctrl+C     - Cancel current operation / Exit menu

@@ -295,8 +295,8 @@ class PastebinSearchEngine:
         
         # If no results yet, offer manual search option
         if not results:
-            print("🔄 No automated results found.")
-            print("💡 You can use manual browser search for better results")
+            print("No automated results found.")
+            print("You can use manual browser search for better results")
             print("   Run: python pastebinsearch.py --manual \"your_search_term\"")
             
             # Return helpful placeholder results
@@ -695,7 +695,7 @@ class PastebinSearchEngine:
     async def fallback_search(self, search_term: str, limit: int) -> List[Dict[str, Any]]:
         """Fallback search method - try to return empty to trigger manual mode"""
         print("No results from automated methods...")
-        print("🔄 Preparing to switch to manual browser search...")
+        print("Preparing to switch to manual browser search...")
         
         # Return empty to trigger manual search
         return []
@@ -776,8 +776,8 @@ class PastebinSearchEngine:
     
     async def _open_manual_search(self, search_term: str) -> List[Dict[str, Any]]:
         """Open manual browser search when automated methods fail"""
-        print("\n🌐 Opening manual search in browser...")
-        print("📝 Automated search was blocked. Switching to manual mode.")
+        print("\nOpening manual search in browser...")
+        print("Automated search was blocked. Switching to manual mode.")
         
         try:
             import webbrowser
@@ -791,12 +791,12 @@ class PastebinSearchEngine:
                 f"https://pastebin.com/trending"
             ]
             
-            print(f"\n🔍 Search URLs being opened for '{search_term}':")
+            print(f"\nSearch URLs being opened for '{search_term}':")
             for i, url in enumerate(search_urls, 1):
                 print(f"  {i}. {url}")
                 
             # Perguntar ao usuário qual método usar
-            print("\n📋 Choose search method:")
+            print("\nChoose search method:")
             print("  1. DuckDuckGo site search")  
             print("  2. Google site search")
             print("  3. Pastebin Archive")
@@ -818,11 +818,11 @@ class PastebinSearchEngine:
             
             # Abrir URLs no browser
             for url in urls_to_open:
-                print(f"🌐 Opening: {url}")
+                print(f"Opening: {url}")
                 webbrowser.open(url)
                 time.sleep(1)  # Delay entre aberturas
             
-            print("\n📌 Manual Search Instructions:")
+            print("\nManual Search Instructions:")
             print("  1. Look for Pastebin links in the opened browser tabs")
             print("  2. Copy interesting paste URLs")
             print("  3. Return to the terminal and press Enter when done")
@@ -830,9 +830,9 @@ class PastebinSearchEngine:
             
             # Aguardar input do usuário
             try:
-                input("\n⏳ Press Enter when you've finished your manual search...")
+                input("\nPress Enter when you've finished your manual search...")
             except:
-                print("\n⏳ Manual search completed (non-interactive mode)")
+                print("\nManual search completed (non-interactive mode)")
             
             # Retornar instruções ao invés de resultados vazios
             manual_results = [
@@ -863,7 +863,7 @@ class PastebinSearchEngine:
             return manual_results
             
         except Exception as e:
-            print(f"❌ Error opening manual search: {e}")
+            print(f"[ERROR] Error opening manual search: {e}")
             return []
     
     async def scan_for_security_issues(self, results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:

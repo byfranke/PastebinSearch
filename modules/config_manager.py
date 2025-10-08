@@ -97,7 +97,7 @@ class ConfigManager:
             return self.merge_configs(self.default_config, config)
             
         except (json.JSONDecodeError, IOError) as e:
-            print(f"⚠️  Error loading config: {e}")
+            print(f"[WARNING] Error loading config: {e}")
             return self.default_config
     
     async def save_config(self, config: Dict[str, Any]) -> bool:
@@ -107,7 +107,7 @@ class ConfigManager:
                 json.dump(config, f, indent=4, ensure_ascii=False)
             return True
         except IOError as e:
-            print(f"❌ Error saving config: {e}")
+            print(f"[ERROR] Error saving config: {e}")
             return False
     
     def merge_configs(self, default: Dict[str, Any], user: Dict[str, Any]) -> Dict[str, Any]:
@@ -126,7 +126,7 @@ class ConfigManager:
         """Interactive configuration editor"""
         config = await self.load_config()
         
-        console.print("\n[bold cyan]🔧 Configuration Editor[/bold cyan]")
+        console.print("\n[bold cyan]Configuration Editor[/bold cyan]")
         
         while True:
             self.show_config_menu(console, config)
@@ -139,9 +139,9 @@ class ConfigManager:
             
             if choice == "0":
                 if await self.save_config(config):
-                    console.print("[green]✅ Configuration saved successfully![/green]")
+                    console.print("[green]Configuration saved successfully![/green]")
                 else:
-                    console.print("[red]❌ Error saving configuration[/red]")
+                    console.print("[red]Error saving configuration[/red]")
                 break
             elif choice == "1":
                 await self.edit_general_config(console, config)
@@ -197,7 +197,7 @@ class ConfigManager:
     
     async def edit_general_config(self, console: Console, config: Dict[str, Any]):
         """Edit general configuration"""
-        console.print("\n[bold yellow]📋 General Settings[/bold yellow]")
+        console.print("\n[bold yellow]General Settings[/bold yellow]")
         
         config['general']['auto_update'] = Confirm.ask(
             "Enable auto update?", 
@@ -218,7 +218,7 @@ class ConfigManager:
     
     async def edit_search_config(self, console: Console, config: Dict[str, Any]):
         """Edit search configuration"""
-        console.print("\n[bold yellow]🔍 Search Settings[/bold yellow]")
+        console.print("\n[bold yellow]Search Settings[/bold yellow]")
         
         config['search']['default_limit'] = IntPrompt.ask(
             "Default result limit",
@@ -259,7 +259,7 @@ class ConfigManager:
     
     async def edit_browser_config(self, console: Console, config: Dict[str, Any]):
         """Edit browser configuration"""
-        console.print("\n[bold yellow]🌐 Browser Settings[/bold yellow]")
+        console.print("\n[bold yellow]Browser Settings[/bold yellow]")
         
         config['browser']['headless'] = Confirm.ask(
             "Run browser in headless mode?",
@@ -295,7 +295,7 @@ class ConfigManager:
     
     async def edit_output_config(self, console: Console, config: Dict[str, Any]):
         """Edit output configuration"""
-        console.print("\n[bold yellow]📄 Output Settings[/bold yellow]")
+        console.print("\n[bold yellow]Output Settings[/bold yellow]")
         
         output_format = Prompt.ask(
             "Display format",
@@ -322,7 +322,7 @@ class ConfigManager:
     
     async def edit_alerts_config(self, console: Console, config: Dict[str, Any]):
         """Edit alerts configuration"""
-        console.print("\n[bold yellow]🔔 Alert Settings[/bold yellow]")
+        console.print("\n[bold yellow]Alert Settings[/bold yellow]")
         
         config['alerts']['enabled'] = Confirm.ask(
             "Enable alerts?",
@@ -376,7 +376,7 @@ class ConfigManager:
     
     async def edit_advanced_config(self, console: Console, config: Dict[str, Any]):
         """Edit advanced configuration"""
-        console.print("\n[bold yellow]⚡ Advanced Settings[/bold yellow]")
+        console.print("\n[bold yellow]Advanced Settings[/bold yellow]")
         
         config['advanced']['concurrent_searches'] = IntPrompt.ask(
             "Concurrent searches",
@@ -412,9 +412,9 @@ class ConfigManager:
         try:
             with open(export_path, 'w', encoding='utf-8') as f:
                 json.dump(config, f, indent=4, ensure_ascii=False)
-            print(f"✅ Configuration exported to {export_path}")
+            print(f"Configuration exported to {export_path}")
         except IOError as e:
-            print(f"❌ Export failed: {e}")
+            print(f"[ERROR] Export failed: {e}")
     
     async def import_config(self):
         """Import configuration from file"""
@@ -427,22 +427,22 @@ class ConfigManager:
                 imported_config = json.load(f)
             
             if await self.save_config(imported_config):
-                print("✅ Configuration imported successfully!")
+                print("Configuration imported successfully!")
             else:
-                print("❌ Import failed - couldn't save configuration")
+                print("[ERROR] Import failed - couldn't save configuration")
                 
         except (json.JSONDecodeError, IOError) as e:
-            print(f"❌ Import failed: {e}")
+            print(f"[ERROR] Import failed: {e}")
     
     async def reset_config(self):
         """Reset configuration to defaults"""
         from rich.prompt import Confirm
         
-        if Confirm.ask("⚠️  Reset all settings to default?"):
+        if Confirm.ask("Reset all settings to default?"):
             if await self.save_config(self.default_config):
-                print("✅ Configuration reset to defaults")
+                print("Configuration reset to defaults")
             else:
-                print("❌ Reset failed")
+                print("[ERROR] Reset failed")
     
     def get_config_value(self, key_path: str, config: Optional[Dict] = None) -> Any:
         """Get a configuration value using dot notation"""

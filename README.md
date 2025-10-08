@@ -90,11 +90,11 @@ python install.py
 ```
 
 What it does:
-- ✅ **Auto-detects** your operating system and Python environment
-- ✅ **Installs dependencies** including brotli, selenium, and webdrivers  
-- ✅ **Creates shortcuts** and system integration
-- ✅ **Tests installation** to ensure everything works
-- ✅ **Handles edge cases** like externally-managed Python environments
+- **Auto-detects** your operating system and Python environment
+- **Installs dependencies** including brotli, selenium, and webdrivers  
+- **Creates shortcuts** and system integration
+- **Tests installation** to ensure everything works
+- **Handles edge cases** like externally-managed Python environments
 
 ### Linux Specific
 ```bash

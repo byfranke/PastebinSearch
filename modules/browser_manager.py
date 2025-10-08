@@ -61,7 +61,7 @@ class BrowserManager:
                 raise Exception("No browser automation library available. Install Playwright or Selenium.")
                 
         except Exception as e:
-            print(f"❌ Failed to start browser: {e}")
+            print(f"Failed to start browser: {e}")
             return False
     
     async def _start_playwright_browser(self) -> bool:
@@ -96,11 +96,11 @@ class BrowserManager:
             # Set timeout
             self.page.set_default_timeout(self.config['timeout'] * 1000)
             
-            print("✅ Playwright browser started successfully")
+            print("Playwright browser started successfully")
             return True
             
         except Exception as e:
-            print(f"❌ Playwright browser start failed: {e}")
+            print(f"Playwright browser start failed: {e}")
             return False
     
     def _start_selenium_browser(self) -> bool:
@@ -126,11 +126,11 @@ class BrowserManager:
             # Set timeout
             self.selenium_driver.implicitly_wait(self.config['timeout'])
             
-            print("✅ Selenium browser started successfully")
+            print("Selenium browser started successfully")
             return True
             
         except Exception as e:
-            print(f"❌ Selenium browser start failed: {e}")
+            print(f"Selenium browser start failed: {e}")
             return False
     
     async def stop_browser(self):
@@ -140,15 +140,15 @@ class BrowserManager:
                 await self.context.close()
                 await self.browser.close()
                 await self.playwright.stop()
-                print("✅ Playwright browser stopped")
+                print("Playwright browser stopped")
             elif self.selenium_driver:
                 self.selenium_driver.quit()
-                print("✅ Selenium browser stopped")
+                print("Selenium browser stopped")
             
             self.monitoring_active = False
             
         except Exception as e:
-            print(f"⚠️  Error stopping browser: {e}")
+            print(f"Error stopping browser: {e}")
     
     async def navigate_to_url(self, url: str) -> bool:
         """Navigate to a specific URL"""
@@ -156,18 +156,18 @@ class BrowserManager:
             if self.use_playwright and self.page:
                 await self.page.goto(url)
                 await self.page.wait_for_load_state('networkidle')
-                print(f"✅ Navigated to: {url}")
+                print(f"Navigated to: {url}")
                 return True
             elif self.selenium_driver:
                 self.selenium_driver.get(url)
-                print(f"✅ Navigated to: {url}")
+                print(f"Navigated to: {url}")
                 return True
             else:
-                print("❌ No active browser session")
+                print("[ERROR] No active browser session")
                 return False
                 
         except Exception as e:
-            print(f"❌ Navigation failed: {e}")
+            print(f"Navigation failed: {e}")
             return False
     
     async def auto_navigate(self) -> bool:
@@ -182,20 +182,20 @@ class BrowserManager:
             if self.use_playwright and self.page:
                 title = await self.page.title()
                 if "Pastebin" in title:
-                    print("✅ Successfully accessed Pastebin")
+                    print("Successfully accessed Pastebin")
                     await self._setup_pastebin_session()
                     return True
             elif self.selenium_driver:
                 title = self.selenium_driver.title
                 if "Pastebin" in title:
-                    print("✅ Successfully accessed Pastebin")
+                    print("Successfully accessed Pastebin")
                     self._setup_pastebin_session_selenium()
                     return True
             
             return False
             
         except Exception as e:
-            print(f"❌ Auto navigation failed: {e}")
+            print(f"Auto navigation failed: {e}")
             return False
     
     async def _setup_pastebin_session(self):
@@ -208,7 +208,7 @@ class BrowserManager:
                 )
                 if cookie_button:
                     await cookie_button.click()
-                    print("✅ Accepted cookies")
+                    print("Accepted cookies")
             except:
                 pass  # No cookie banner found
             
@@ -217,10 +217,10 @@ class BrowserManager:
             if archive_link:
                 await archive_link.click()
                 await self.page.wait_for_load_state('networkidle')
-                print("✅ Navigated to archive")
+                print("Navigated to archive")
             
         except Exception as e:
-            print(f"⚠️  Setup warning: {e}")
+            print(f"[WARNING] Setup warning: {e}")
     
     def _setup_pastebin_session_selenium(self):
         """Setup Pastebin session with Selenium"""
@@ -231,7 +231,7 @@ class BrowserManager:
                     EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Accept')]"))
                 )
                 cookie_button.click()
-                print("✅ Accepted cookies")
+                print("Accepted cookies")
             except:
                 pass  # No cookie banner found
             
@@ -241,10 +241,10 @@ class BrowserManager:
             )
             archive_link.click()
             time.sleep(2)  # Wait for navigation
-            print("✅ Navigated to archive")
+            print("Navigated to archive")
             
         except Exception as e:
-            print(f"⚠️  Setup warning: {e}")
+            print(f"[WARNING] Setup warning: {e}")
     
     async def search_in_browser(self, search_term: str) -> List[Dict[str, Any]]:
         """Perform search using browser automation"""
@@ -254,11 +254,11 @@ class BrowserManager:
             elif self.selenium_driver:
                 return self._selenium_search(search_term)
             else:
-                print("❌ No active browser session")
+                print("[ERROR] No active browser session")
                 return []
                 
         except Exception as e:
-            print(f"❌ Browser search failed: {e}")
+            print(f"[ERROR] Browser search failed: {e}")
             return []
     
     async def _playwright_search(self, search_term: str) -> List[Dict[str, Any]]:
@@ -295,11 +295,11 @@ class BrowserManager:
                 except:
                     continue
             
-            print(f"✅ Found {len(results)} results via browser")
+            print(f"Found {len(results)} results via browser")
             return results
             
         except Exception as e:
-            print(f"❌ Playwright search failed: {e}")
+            print(f"Playwright search failed: {e}")
             return []
     
     def _selenium_search(self, search_term: str) -> List[Dict[str, Any]]:
@@ -335,11 +335,10 @@ class BrowserManager:
                 except:
                     continue
             
-            print(f"✅ Found {len(results)} results via browser")
+            print(f"Found {len(results)} results via browser")
             return results
-            
         except Exception as e:
-            print(f"❌ Selenium search failed: {e}")
+            print(f"Selenium search failed: {e}")
             return []
     
     async def monitor_changes(self, url: str = "https://pastebin.com/archive", interval: int = 60):
@@ -348,7 +347,7 @@ class BrowserManager:
             return
         
         self.monitoring_active = True
-        print(f"🔍 Started monitoring: {url} (every {interval}s)")
+        print(f"Started monitoring: {url} (every {interval}s)")
         
         previous_hash = None
         
@@ -366,7 +365,7 @@ class BrowserManager:
                 current_hash = hashlib.md5(content.encode()).hexdigest()
                 
                 if previous_hash and current_hash != previous_hash:
-                    print("🔔 Page change detected!")
+                    print("Page change detected!")
                     await self._handle_page_change(url)
                 
                 previous_hash = current_hash
@@ -383,10 +382,10 @@ class BrowserManager:
                     time.sleep(2)
                 
             except Exception as e:
-                print(f"⚠️  Monitoring error: {e}")
+                print(f"Monitoring error: {e}")
                 await asyncio.sleep(interval)
         
-        print("⏹️  Monitoring stopped")
+        print("Monitoring stopped")
     
     async def _handle_page_change(self, url: str):
         """Handle detected page changes"""
@@ -413,15 +412,15 @@ class BrowserManager:
             with open(changes_file, 'w') as f:
                 json.dump(changes, f, indent=2)
             
-            print(f"📝 Change logged: {timestamp}")
+            print(f"Change logged: {timestamp}")
             
         except Exception as e:
-            print(f"⚠️  Error handling page change: {e}")
+            print(f"Error handling page change: {e}")
     
     def stop_monitoring(self):
         """Stop page monitoring"""
         self.monitoring_active = False
-        print("⏹️  Stopping monitoring...")
+        print("Stopping monitoring...")
     
     async def take_screenshot(self, filename: Optional[str] = None) -> str:
         """Take screenshot of current page"""
@@ -439,11 +438,11 @@ class BrowserManager:
             else:
                 raise Exception("No active browser session")
             
-            print(f"📸 Screenshot saved: {screenshot_path}")
+            print(f"Screenshot saved: {screenshot_path}")
             return str(screenshot_path)
             
         except Exception as e:
-            print(f"❌ Screenshot failed: {e}")
+            print(f"Screenshot failed: {e}")
             return ""
     
     async def extract_page_text(self) -> str:
@@ -457,7 +456,7 @@ class BrowserManager:
                 return ""
                 
         except Exception as e:
-            print(f"❌ Text extraction failed: {e}")
+            print(f"Text extraction failed: {e}")
             return ""
     
     def get_current_url(self) -> str:
@@ -471,7 +470,7 @@ class BrowserManager:
                 return ""
                 
         except Exception as e:
-            print(f"❌ URL retrieval failed: {e}")
+            print(f"URL retrieval failed: {e}")
             return ""
     
     async def wait_for_element(self, selector: str, timeout: int = 10) -> bool:
@@ -489,7 +488,7 @@ class BrowserManager:
                 return False
                 
         except Exception as e:
-            print(f"⚠️  Element wait timeout: {selector}")
+            print(f"Element wait timeout: {selector}")
             return False
     
     def is_browser_active(self) -> bool:

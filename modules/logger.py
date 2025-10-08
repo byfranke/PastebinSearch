@@ -95,7 +95,7 @@ class SearchLogger:
             f"Search: '{search_term}' returned {results_count} results{filter_info}{duration_info}"
         )
         
-        print(f"📝 Search logged: {search_term} ({results_count} results)")
+        print(f"Search logged: {search_term} ({results_count} results)")
     
     def log_error(self, error_message: str, error_type: str = "general", 
                  context: Optional[Dict[str, Any]] = None):
@@ -114,7 +114,7 @@ class SearchLogger:
         context_info = f" Context: {context}" if context else ""
         self.logger.error(f"[{error_type}] {error_message}{context_info}")
         
-        print(f"❌ Error logged: {error_type} - {error_message}")
+        print(f"[ERROR] Error logged: {error_type} - {error_message}")
     
     def log_activity(self, activity: str, details: Optional[Dict[str, Any]] = None):
         """Log general activity"""
@@ -206,7 +206,7 @@ class SearchLogger:
         """Display recent activity logs"""
         try:
             if not self.activity_log_file.exists():
-                console.print("[yellow]⚠️  No activity logs found[/yellow]")
+                console.print("[yellow][WARNING] No activity logs found[/yellow]")
                 return
             
             # Read last N lines from activity log
@@ -216,12 +216,12 @@ class SearchLogger:
             recent_lines = lines[-limit:] if len(lines) > limit else lines
             
             if not recent_lines:
-                console.print("[yellow]⚠️  No recent activity[/yellow]")
+                console.print("[yellow][WARNING] No recent activity[/yellow]")
                 return
             
             # Create table
             table = Table(
-                title=f"📋 Recent Activity (Last {len(recent_lines)} entries)",
+                title=f"Recent Activity (Last {len(recent_lines)} entries)",
                 box=box.ROUNDED,
                 show_header=True,
                 header_style="bold cyan"
@@ -260,13 +260,13 @@ class SearchLogger:
             console.print(table)
             
         except Exception as e:
-            console.print(f"[red]❌ Error reading logs: {e}[/red]")
+            console.print(f"[red][ERROR] Error reading logs: {e}[/red]")
     
     def show_error_logs(self, console: Console, limit: int = 20):
         """Display recent error logs"""
         try:
             if not self.error_log_file.exists():
-                console.print("[yellow]⚠️  No error logs found[/yellow]")
+                console.print("[yellow][WARNING] No error logs found[/yellow]")
                 return
             
             # Read error log
@@ -276,12 +276,12 @@ class SearchLogger:
             recent_errors = lines[-limit:] if len(lines) > limit else lines
             
             if not recent_errors:
-                console.print("[green]✅ No recent errors![/green]")
+                console.print("[green]No recent errors![/green]")
                 return
             
             # Create table
             table = Table(
-                title=f"❌ Recent Errors (Last {len(recent_errors)} entries)",
+                title=f"Recent Errors (Last {len(recent_errors)} entries)",
                 box=box.ROUNDED,
                 show_header=True,
                 header_style="bold red"
@@ -307,19 +307,19 @@ class SearchLogger:
             console.print(table)
             
         except Exception as e:
-            console.print(f"[red]❌ Error reading error logs: {e}[/red]")
+            console.print(f"[red][ERROR] Error reading error logs: {e}[/red]")
     
     def show_search_history_table(self, console: Console, limit: int = 20):
         """Display search history in table format"""
         history = self.get_search_history(limit)
         
         if not history:
-            console.print("[yellow]⚠️  No search history found[/yellow]")
+            console.print("[yellow][WARNING] No search history found[/yellow]")
             return
         
         # Create table
         table = Table(
-            title=f"🔍 Search History (Last {len(history)} searches)",
+            title=f"Search History (Last {len(history)} searches)",
             box=box.ROUNDED,
             show_header=True,
             header_style="bold cyan"
@@ -362,9 +362,7 @@ class SearchLogger:
         
         # Create statistics panel
         stats_text = f"""
-[cyan]📊 Search Statistics[/cyan]
-
-[green]General Stats:[/green]
+        [cyan]Search Statistics[/cyan][green]General Stats:[/green]
 • Total Searches: {stats['total_searches']}
 • Unique Terms: {stats['unique_terms']}
 • Average Results: {stats['average_results']}
@@ -387,7 +385,7 @@ class SearchLogger:
         if stats['search_frequency_by_day']:
             recent_days = dict(list(stats['search_frequency_by_day'].items())[-7:])
             
-            activity_table = Table(title="📈 Recent Activity (Last 7 Days)", box=box.SIMPLE)
+            activity_table = Table(title="Recent Activity (Last 7 Days)", box=box.SIMPLE)
             activity_table.add_column("Date", style="cyan")
             activity_table.add_column("Searches", style="yellow", justify="right")
             activity_table.add_column("Activity", style="green")
@@ -418,11 +416,11 @@ class SearchLogger:
             # Recreate logging setup
             self.setup_logging()
             
-            print("✅ All logs cleared successfully")
+            print("[SUCCESS] All logs cleared successfully")
             self.log_activity("Logs cleared by user")
             
         except Exception as e:
-            print(f"❌ Error clearing logs: {e}")
+            print(f"[ERROR] Error clearing logs: {e}")
     
     def export_logs(self, export_path: Optional[Path] = None):
         """Export logs to a single file"""
@@ -450,11 +448,11 @@ class SearchLogger:
             with open(export_path, 'w', encoding='utf-8') as f:
                 json.dump(export_data, f, indent=2, ensure_ascii=False)
             
-            print(f"✅ Logs exported to: {export_path}")
+            print(f"[SUCCESS] Logs exported to: {export_path}")
             self.log_activity(f"Logs exported to {export_path}")
             
         except Exception as e:
-            print(f"❌ Export failed: {e}")
+            print(f"[ERROR] Export failed: {e}")
             self.log_error(f"Log export failed: {e}")
     
     def search_logs(self, search_term: str, log_type: str = "all") -> List[Dict[str, Any]]:

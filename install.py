@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-🚀 PastebinSearch Universal Installer
+PastebinSearch Universal Installer
 =====================================
 Detects your system automatically and installs PastebinSearch with the best method.
 Supports Windows, Linux, macOS with automatic environment detection.
@@ -51,19 +51,19 @@ class PastebinSearchInstaller:
     
     def print_banner(self):
         """Print installation banner"""
-        print("🚀 PastebinSearch Universal Installer")
+        print("PastebinSearch Universal Installer")
         print("=" * 50)
-        print("🔍 Advanced Security Research Tool")
-        print("📧 by byFranke - https://byfranke.com")
+        print("Advanced Security Research Tool")
+        print("by byFranke - https://byfranke.com")
         print()
         print("� SYSTEM DETECTION:")
-        print(f"�🖥️  System: {platform.system()} {platform.release()}")
-        print(f"🐍 Python: {sys.version.split()[0]}")
-        print(f"📁 Install Directory: {self.install_dir}")
-        print(f"🌐 Virtual Environment: {'Yes' if self.is_venv else 'No'}")
-        print(f"🔒 Externally Managed: {'Yes' if self.is_externally_managed else 'No'}")
+        print(f"System: {platform.system()} {platform.release()}")
+        print(f"Python: {sys.version.split()[0]}")
+        print(f"Install Directory: {self.install_dir}")
+        print(f"Virtual Environment: {'Yes' if self.is_venv else 'No'}")
+        print(f"Externally Managed: {'Yes' if self.is_externally_managed else 'No'}")
         print()
-        print("📋 WHAT THIS INSTALLER WILL DO:")
+        print("WHAT THIS INSTALLER WILL DO:")
         print("  • Install all required Python dependencies")  
         print("  • Create system integration (PATH, shortcuts)")
         print("  • Set up 'pastebinsearch' command globally")
@@ -74,7 +74,7 @@ class PastebinSearchInstaller:
     def run_command(self, cmd_parts, description="Running command", check=True):
         """Run a command with proper error handling"""
         try:
-            print(f"  🔧 {description}...")
+            print(f"  {description}...")
             result = subprocess.run(
                 cmd_parts,
                 check=check,
@@ -82,18 +82,18 @@ class PastebinSearchInstaller:
                 text=True
             )
             if result.stdout:
-                print(f"    ✅ Output: {result.stdout.strip()}")
+                print(f"    Output: {result.stdout.strip()}")
             return True, result.stdout
         except subprocess.CalledProcessError as e:
-            print(f"    ❌ Failed: {e.stderr.strip()}")
+            print(f"    Failed: {e.stderr.strip()}")
             return False, e.stderr
         except Exception as e:
-            print(f"    ❌ Error: {str(e)}")
+            print(f"    Error: {str(e)}")
             return False, str(e)
     
     def install_dependencies(self):
         """Install Python dependencies using the best method"""
-        print("📦 Installing Python Dependencies...")
+        print("Installing Python Dependencies...")
         
         # Essential packages including brotli
         packages = [
@@ -117,10 +117,10 @@ class PastebinSearchInstaller:
         
         # Determine installation method
         if self.is_venv:
-            print("  📝 Using virtual environment installation...")
+            print("  Using virtual environment installation...")
             install_cmd = pip_cmd + ["install"] + packages
         elif self.is_externally_managed:
-            print("  📝 Creating isolated environment...")
+            print("  Creating isolated environment...")
             # Create a dedicated virtual environment
             venv_dir = self.install_dir / "venv"
             
@@ -140,22 +140,22 @@ class PastebinSearchInstaller:
             
             install_cmd = [str(venv_python), "-m", "pip", "install"] + packages
         else:
-            print("  📝 Using user installation...")
+            print("  Using user installation...")
             install_cmd = pip_cmd + ["install", "--user"] + packages
         
         # Install packages
         success, output = self.run_command(install_cmd, "Installing packages")
         
         if success:
-            print("  ✅ All dependencies installed successfully!")
+            print("  All dependencies installed successfully!")
             return True
         else:
-            print("  ❌ Some packages failed to install")
+            print("  Some packages failed to install")
             return False
     
     def setup_system_integration(self):
         """Setup system integration (PATH, shortcuts, etc)"""
-        print("🔧 Setting up system integration...")
+        print("Setting up system integration...")
         
         # Create installation directory
         self.install_dir.mkdir(parents=True, exist_ok=True)
@@ -177,11 +177,11 @@ class PastebinSearchInstaller:
                     if dst.exists():
                         shutil.rmtree(dst)
                     shutil.copytree(src, dst)
-                    print(f"  📂 Copied directory: {file_path}")
+                    print(f"  Copied directory: {file_path}")
                 else:
                     dst.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(src, dst)
-                    print(f"  📄 Copied file: {file_path}")
+                    print(f"  Copied file: {file_path}")
         
         # Create launcher script
         if self.system == "windows":
@@ -206,10 +206,10 @@ cd /d "{self.install_dir}"
 """
         
         launcher_path.write_text(launcher_content)
-        print(f"  🚀 Created Windows launcher: {launcher_path}")
+        print(f"  Created Windows launcher: {launcher_path}")
         
         # Add to PATH (requires admin, so provide instructions)
-        print(f"  💡 To use 'pastebinsearch' from anywhere:")
+        print(f"  To use 'pastebinsearch' from anywhere:")
         print(f"     Add {self.install_dir} to your PATH environment variable")
     
     def _create_unix_launcher(self):
@@ -229,7 +229,7 @@ cd "{self.install_dir}"
         
         launcher_path.write_text(launcher_content)
         launcher_path.chmod(0o755)
-        print(f"  🚀 Created Unix launcher: {launcher_path}")
+        print(f"  Created Unix launcher: {launcher_path}")
         
         # Try to create symlink in ~/.local/bin
         local_bin = Path.home() / ".local" / "bin"
@@ -241,15 +241,15 @@ cd "{self.install_dir}"
         
         try:
             symlink_path.symlink_to(launcher_path)
-            print(f"  🔗 Created symlink: {symlink_path}")
-            print(f"  💡 You can now use 'pastebinsearch' from anywhere!")
+            print(f"  Created symlink: {symlink_path}")
+            print(f"  You can now use 'pastebinsearch' from anywhere!")
         except Exception as e:
-            print(f"  ⚠️  Could not create symlink: {e}")
-            print(f"  💡 Manually add {self.install_dir} to your PATH")
+            print(f"  Could not create symlink: {e}")
+            print(f"  Manually add {self.install_dir} to your PATH")
     
     def move_obsolete_files(self):
         """Move obsolete files to obsolete directory"""
-        print("🗂️  Organizing project files...")
+        print("Organizing project files...")
         
         obsolete_dir = self.script_dir / "obsolete"
         obsolete_dir.mkdir(exist_ok=True)
@@ -282,10 +282,10 @@ cd "{self.install_dir}"
                             dst.unlink()
                         
                         shutil.move(str(file_path), str(dst))
-                        print(f"  📦 Moved to obsolete: {file_path.name}")
+                        print(f"  Moved to obsolete: {file_path.name}")
                         moved_count += 1
             except Exception as e:
-                print(f"  ⚠️  Could not move pattern {pattern}: {e}")
+                print(f"  Could not move pattern {pattern}: {e}")
         
         # Move directories
         for dir_name in obsolete_dirs:
@@ -299,10 +299,10 @@ cd "{self.install_dir}"
                         shutil.rmtree(dst)
                     
                     shutil.move(str(dir_path), str(dst))
-                    print(f"  📦 Moved directory to obsolete: {dir_name}")
+                    print(f"  Moved directory to obsolete: {dir_name}")
                     moved_count += 1
             except Exception as e:
-                print(f"  ⚠️  Could not move directory {dir_name}: {e}")
+                print(f"  Could not move directory {dir_name}: {e}")
         
         # Create new minimal requirements.txt (backup old one first)
         requirements_path = self.script_dir / "requirements.txt"
@@ -310,9 +310,9 @@ cd "{self.install_dir}"
             backup_path = obsolete_dir / "requirements_old.txt"
             try:
                 shutil.copy2(requirements_path, backup_path)
-                print(f"  💾 Backed up old requirements.txt")
+                print(f"  Backed up old requirements.txt")
             except Exception as e:
-                print(f"  ⚠️  Could not backup requirements.txt: {e}")
+                print(f"  Could not backup requirements.txt: {e}")
         
         new_requirements = """# PastebinSearch - Essential Dependencies
 rich>=13.7.0
@@ -333,21 +333,21 @@ webdriver-manager>=4.0.0
         
         try:
             requirements_path.write_text(new_requirements, encoding='utf-8')
-            print("  📄 Created new minimal requirements.txt")
+            print("  Created new minimal requirements.txt")
         except Exception as e:
-            print(f"  ⚠️  Could not create new requirements.txt: {e}")
+            print(f"  Could not create new requirements.txt: {e}")
         
-        print(f"  ✅ Organized {moved_count} obsolete files/directories")
+        print(f"  Organized {moved_count} obsolete files/directories")
         return True  # Always return True even if some files couldn't be moved
     
     def test_installation(self):
         """Test if installation works"""
-        print("🧪 Testing installation...")
+        print("Testing installation...")
         
         launcher_script = self.install_dir / ("pastebinsearch.bat" if self.system == "windows" else "pastebinsearch")
         
         if not launcher_script.exists():
-            print("  ❌ Launcher script not found")
+            print("  Launcher script not found")
             return False
         
         try:
@@ -360,25 +360,25 @@ webdriver-manager>=4.0.0
             )
             
             if result.returncode == 0:
-                print("  ✅ Installation test successful!")
+                print("  Installation test successful!")
                 return True
             else:
-                print(f"  ❌ Installation test failed: {result.stderr}")
+                print(f"  Installation test failed: {result.stderr}")
                 return False
                 
         except Exception as e:
-            print(f"  ❌ Test failed: {e}")
+            print(f"  Test failed: {e}")
             return False
     
     def update_readme(self):
         """Update README.md with new installation instructions"""
-        print("📚 Updating README.md...")
+        print("Updating README.md...")
         
-        readme_content = """# 🔍 PastebinSearch v3.1.1
+        readme_content = """# PastebinSearch v3.1.1
 
 Advanced security research tool for searching Pastebin with multiple search engines and automation features.
 
-## 🚀 Quick Installation
+## Quick Installation
 
 ### Universal Installer (Recommended)
 ```bash
@@ -386,18 +386,18 @@ python3 install.py
 ```
 
 This installer:
-- ✅ Automatically detects your system (Windows/Linux/macOS)
-- ✅ Handles virtual environments and externally-managed Python
-- ✅ Installs all dependencies including brotli support
-- ✅ Creates system launchers and PATH integration
-- ✅ Organizes project files automatically
+- Automatically detects your system (Windows/Linux/macOS)
+- Handles virtual environments and externally-managed Python
+- Installs all dependencies including brotli support
+- Creates system launchers and PATH integration
+- Organizes project files automatically
 
 ### Manual Installation
 ```bash
 pip install rich aiohttp beautifulsoup4 lxml requests python-dotenv brotli selenium
 ```
 
-## 📋 Usage
+## Usage
 
 After installation, you can use PastebinSearch from anywhere:
 
@@ -418,18 +418,18 @@ pastebinsearch --diagnose
 pastebinsearch --help
 ```
 
-## 🛠️ Features
+## Features
 
-- 🔍 **Multi-Engine Search**: DuckDuckGo, Google, Bing integration
-- 🌐 **Browser Automation**: Selenium-based manual search
-- 🔒 **SSL Handling**: Advanced certificate verification with fallbacks
-- 📊 **Rich Interface**: Beautiful CLI with progress bars and panels
-- 🚀 **Async Operations**: High-performance async HTTP requests
-- 📈 **Search History**: Track and replay searches
-- 🎯 **Smart Filtering**: Date, language, and content filters
-- 🔧 **Hybrid Modes**: Automatic + manual search options
+- **Multi-Engine Search**: DuckDuckGo, Google, Bing integration
+- **Browser Automation**: Selenium-based manual search
+- **SSL Handling**: Advanced certificate verification with fallbacks
+- **Rich Interface**: Beautiful CLI with progress bars and panels
+- **Async Operations**: High-performance async HTTP requests
+- **Search History**: Track and replay searches
+- **Smart Filtering**: Date, language, and content filters
+- **Hybrid Modes**: Automatic + manual search options
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### SSL Certificate Issues
 ```bash
@@ -447,7 +447,7 @@ The installer automatically includes brotli support. If you get encoding errors,
 pip install brotli
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 PastebinSearch/
@@ -459,11 +459,11 @@ PastebinSearch/
 └── README.md           # This file
 ```
 
-## 🔒 Legal Notice
+## Legal Notice
 
 This tool is for educational and authorized security research only. Users are responsible for compliance with applicable laws and terms of service.
 
-## 🌟 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create feature branch
@@ -471,11 +471,11 @@ This tool is for educational and authorized security research only. Users are re
 4. Test thoroughly
 5. Submit pull request
 
-## 📞 Support
+## Support
 
-- 🌐 Website: https://byfranke.com
-- 📧 Contact: Via website contact form
-- 🐛 Issues: Open GitHub issue
+- Website: https://byfranke.com
+- Contact: Via website contact form
+- Issues: Open GitHub issue
 
 ---
 
@@ -483,16 +483,16 @@ This tool is for educational and authorized security research only. Users are re
 """
         
         (self.script_dir / "README.md").write_text(readme_content, encoding='utf-8')
-        print("  ✅ README.md updated with new instructions")
+        print("  README.md updated with new instructions")
     
     def run_installation(self):
         """Run the complete installation process"""
         self.print_banner()
         
         # Check if user wants to proceed
-        response = input("🤔 Proceed with installation? (Y/n): ").lower().strip()
+        response = input("Proceed with installation? (Y/n): ").lower().strip()
         if response and response[0] == 'n':
-            print("❌ Installation cancelled by user")
+            print("Installation cancelled by user")
             return False
         
         steps = [
@@ -503,49 +503,49 @@ This tool is for educational and authorized security research only. Users are re
         ]
         
         for step_name, step_func in steps:
-            print(f"\n🔄 {step_name}...")
+            print(f"\n{step_name}...")
             if not step_func():
-                print(f"❌ Failed at: {step_name}")
+                print(f"Failed at: {step_name}")
                 return False
         
         # Success message
         print("\n" + "="*70)
-        print("🎉 INSTALLATION SUCCESSFUL!")
+        print("INSTALLATION SUCCESSFUL!")
         print("="*70)
-        print(f"📍 Installation location: {self.install_dir}")
-        print(f"🔍 PastebinSearch is now ready for security research!")
+        print(f"Installation location: {self.install_dir}")
+        print(f"PastebinSearch is now ready for security research!")
         print()
         
         if self.system == "windows":
-            print("📋 HOW TO USE:")
+            print("HOW TO USE:")
             print(f"  Option 1: {self.install_dir / 'pastebinsearch.bat'} --search 'password'")
             print("  Option 2: Add to PATH for global access")
             print(f"           → Add {self.install_dir} to Windows PATH")
             print()
-            print("💡 QUICK COMMANDS:")
+            print("QUICK COMMANDS:")
             print("  • Search passwords: pastebinsearch --search 'password'")
             print("  • Manual search: pastebinsearch --manual --search 'api key'") 
             print("  • Test tool: pastebinsearch --diagnose")
             print("  • Show help: pastebinsearch --help")
         else:
-            print("📋 HOW TO USE:")
+            print("HOW TO USE:")
             print("  pastebinsearch --search 'password'")
             print("  pastebinsearch --manual --search 'api key'")
             print("  pastebinsearch --diagnose")
             print("  pastebinsearch --help")
             print()
-            print("💡 EXAMPLES:")
-            print("  🔍 Search for leaked passwords")
-            print("  🔑 Find exposed API keys")
-            print("  🌐 Automated browser searches")
-            print("  📊 Rich terminal interface")
+            print("EXAMPLES:")
+            print("  Search for leaked passwords")
+            print("  Find exposed API keys")
+            print("  Automated browser searches")
+            print("  Rich terminal interface")
         
         print()
-        print("⚠️  LEGAL NOTICE:")
+        print("LEGAL NOTICE:")
         print("   This tool is for authorized security research only.")
         print("   You are responsible for complying with all applicable laws.")
         print()
-        print("� Ready for ethical security research!")
+        print("Ready for ethical security research!")
         return True
 
 def main():
@@ -555,10 +555,10 @@ def main():
         success = installer.run_installation()
         sys.exit(0 if success else 1)
     except KeyboardInterrupt:
-        print("\n❌ Installation cancelled by user")
+        print("\nInstallation cancelled by user")
         sys.exit(1)
     except Exception as e:
-        print(f"\n💥 Installation failed: {e}")
+        print(f"\nInstallation failed: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
