@@ -20,7 +20,7 @@ class ToolInstaller:
     def __init__(self):
         self.system = platform.system().lower()
         self.tool_name = "PastebinSearch"
-        self.version = "3.1.0"
+        self.version = "3.1.3"
         self.python_min_version = (3, 8)
         
         # Installation paths
