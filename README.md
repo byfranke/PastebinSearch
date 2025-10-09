@@ -19,11 +19,21 @@ Search leaked credentials, API keys, and sensitive information across Pastebin w
 
 ### One-Command Installation
 ```bash
-python install.py
+python install_kali.py
 ```
 
 ### Start Searching
 ```bash
+
+# Interactive mode with full interface
+pastebinsearch
+
+# Test connectivity and SSL
+pastebinsearch --diagnose
+
+# Show help and all options
+pastebinsearch --help
+
 # Search for leaked passwords
 pastebinsearch --search "password"
 
@@ -31,7 +41,19 @@ pastebinsearch --search "password"
 pastebinsearch --search "api key"
 
 # Manual browser automation
-pastebinsearch --manual --search "database"
+pastebinsearch --search "database"
+
+# Quick password search
+pastebinsearch --search "password"
+
+# Database credentials
+pastebinsearch --search "database password mysql"
+
+# API keys and tokens
+pastebinsearch --search "api_key OR token OR secret"
+
+# Configuration files
+pastebinsearch --search "config database host user"
 ```
 
 The tool is ready for ethical security research.
@@ -81,14 +103,6 @@ The tool is ready for ethical security research.
 
 ---
 
-## Installation Options
-
-### Universal Installer (Recommended)
-```bash
-# Works on all systems - Windows, Linux, macOS
-python install.py
-```
-
 What it does:
 - **Auto-detects** your operating system and Python environment
 - **Installs dependencies** including brotli, selenium, and webdrivers  
@@ -96,28 +110,15 @@ What it does:
 - **Tests installation** to ensure everything works
 - **Handles edge cases** like externally-managed Python environments
 
-### Linux Specific
-```bash
-# For systems with externally-managed Python (Kali, Ubuntu 23+)
-python obsolete/install_kali.py
-
-# Or use the interactive helper
-python obsolete/install_helper.py
-```
 
 ### Windows Specific
 ```bash
 # Standard installation
-python install.py
+python install_win.py
 
 # Manual PATH setup if needed
 # Add C:\Users\[USER]\AppData\Local\Programs\PastebinSearch to PATH
 ```
-
-### macOS Specific
-```bash
-# Standard installation
-python3 install.py
 
 # May require additional permissions for browser automation
 ```
@@ -132,38 +133,6 @@ python pastebinsearch.py
 ```
 
 ---
-
-## Usage Examples
-
-### Basic Searches
-```bash
-# Quick password search
-pastebinsearch --search "password"
-
-# Database credentials
-pastebinsearch --search "database password mysql"
-
-# API keys and tokens
-pastebinsearch --search "api_key OR token OR secret"
-
-# Configuration files
-pastebinsearch --search "config database host user"
-```
-
-### Advanced Searches
-```bash
-# Manual browser mode (bypasses anti-bot)
-pastebinsearch --manual --search "credit card"
-
-# Test connectivity and SSL
-pastebinsearch --diagnose
-
-# Interactive mode with full interface
-pastebinsearch
-
-# Show help and all options
-pastebinsearch --help
-```
 
 ### Search Strategies
 
@@ -215,24 +184,6 @@ PastebinSearch/
 
 ## Common Issues & Solutions
 
-### "Brotli encoding error"
-```bash
-# Already fixed in v3.0! Brotli is installed automatically
-# If you still see this, reinstall:
-python install.py
-```
-
-### "SSL certificate verify failed"
-```bash
-# Run diagnostics to auto-fix
-pastebinsearch --diagnose
-```
-
-### "externally-managed-environment" (Linux)
-```bash
-# Use our specialized Kali/Ubuntu installer
-python obsolete/install_kali.py
-```
 
 ### "No results found"
 ```bash
