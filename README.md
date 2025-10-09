@@ -120,9 +120,6 @@ python install_win.py
 # Add C:\Users\[USER]\AppData\Local\Programs\PastebinSearch to PATH
 ```
 
-# May require additional permissions for browser automation
-```
-
 ### Manual Installation
 ```bash
 # Install dependencies manually
@@ -361,6 +358,7 @@ Please use the [GitHub Issues](https://github.com/byFranke/PastebinSearch/issues
 This tool is maintained through community support. Help keep it active:
 
 [![Donate](https://img.shields.io/badge/Support-Development-blue?style=for-the-badge&logo=github)](https://donate.stripe.com/28o8zQ2wY3Dr57G001)
+
 
 
 
