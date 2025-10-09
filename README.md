@@ -114,7 +114,7 @@ What it does:
 ### Windows Specific
 ```bash
 # Standard installation
-python install_win.py
+python install_universal.py
 
 # Manual PATH setup if needed
 # Add C:\Users\[USER]\AppData\Local\Programs\PastebinSearch to PATH
