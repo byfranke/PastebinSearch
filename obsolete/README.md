@@ -81,11 +81,11 @@ python pastebinsearch.py
 ## Feature Comparison
 
 ### **Retained Features**
-✅ Basic search functionality  
-✅ Result limiting  
-✅ Rate limiting  
-✅ User agent customization  
-✅ Output to files  
+Basic search functionality  
+Result limiting  
+Rate limiting  
+User agent customization  
+Output to files  
 
 ### **Enhanced Features**
 🔧 **Search**: More advanced filtering and options  
@@ -94,14 +94,14 @@ python pastebinsearch.py
 🔧 **Error Handling**: Comprehensive error reporting  
 
 ### **New Features in v3.0**
-🆕 **Interactive Menus**: Full menu-driven interface  
-🆕 **Browser Automation**: Automated browsing with Playwright/Selenium  
-🆕 **Security Analysis**: Automatic detection of sensitive data  
-🆕 **Search History**: Complete search history tracking  
-🆕 **Advanced Logging**: Structured logging system  
-🆕 **Batch Search**: Process multiple search terms from files  
-🆕 **Real-time Monitoring**: Monitor pages for changes  
-🆕 **Professional Installer**: Full installation system  
+**Interactive Menus**: Full menu-driven interface  
+**Browser Automation**: Automated browsing with Playwright/Selenium  
+**Security Analysis**: Automatic detection of sensitive data  
+**Search History**: Complete search history tracking  
+**Advanced Logging**: Structured logging system  
+**Batch Search**: Process multiple search terms from files  
+**Real-time Monitoring**: Monitor pages for changes  
+**Professional Installer**: Full installation system  
 
 ## Configuration Migration
 
@@ -218,16 +218,16 @@ python pastebinsearch.py --config
 Once migrated, you'll have access to:
 
 ### **Immediate Benefits**
-- 🎨 **Better Interface**: Rich, colorful CLI
-- 📊 **Better Results**: Formatted tables
-- ⚙️ **Easy Configuration**: Interactive setup
-- 📝 **Complete Logging**: Track all activities
+- **Better Interface**: Rich, colorful CLI
+- **Better Results**: Formatted tables
+- **Easy Configuration**: Interactive setup
+- **Complete Logging**: Track all activities
 
 ### **Advanced Features**
-- 🤖 **Browser Automation**: Automated browsing
-- 🔍 **Security Analysis**: Find exposed credentials
-- 📈 **Search History**: Track and analyze searches
-- 🔔 **Monitoring**: Real-time change detection
+- **Browser Automation**: Automated browsing
+- **Security Analysis**: Find exposed credentials
+- **Search History**: Track and analyze searches
+- **Monitoring**: Real-time change detection
 
 ## Checklist
 
@@ -245,6 +245,7 @@ Once migrated, you'll have access to:
 **Pro Tip**: Start with interactive mode (`python pastebinsearch.py`) to familiarize yourself with all the new features!
 
 **Remember**: Always use this tool responsibly and ethically for security research only.
+
 
 
 
