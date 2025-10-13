@@ -340,17 +340,6 @@ Please use the [GitHub Issues](https://github.com/byFranke/PastebinSearch/issues
 
 ---
 
-## Project Status
-
-### Current Status: Stable
-- **Version**: 3.1.0
-- **Last Updated**: August 2025  
-- **Maintenance**: Actively maintained
-- **Testing**: Tested on Windows 10/11, Linux (Ubuntu, Kali), macOS
-
----
-
-
 
 
 ## Donation Support
@@ -358,6 +347,7 @@ Please use the [GitHub Issues](https://github.com/byFranke/PastebinSearch/issues
 This tool is maintained through community support. Help keep it active:
 
 [![Donate](https://img.shields.io/badge/Support-Development-blue?style=for-the-badge&logo=github)](https://buy.byfranke.com/b/8wM03kb3u7THeIgaEE)
+
 
 
 
