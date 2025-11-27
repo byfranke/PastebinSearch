@@ -266,21 +266,6 @@ export PASTEBINSEARCH_CONFIG="/path/to/config.json"
 
 ---
 
-## Contributing
-
-We welcome contributions from the security research community!
-
-
-### Contribution Guidelines
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Write** tests for your changes
-4. **Ensure** all tests pass (`pytest`)
-5. **Format** your code (`black .`)
-6. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-7. **Push** to the branch (`git push origin feature/amazing-feature`)
-8. **Open** a Pull Request
-
 ### Bug Reports
 Please use the [GitHub Issues](https://github.com/byFranke/PastebinSearch/issues) page to report bugs. Include:
 - Operating system and version
@@ -349,6 +334,7 @@ Please use the [GitHub Issues](https://github.com/byFranke/PastebinSearch/issues
 This tool is maintained through community support. Help keep it active:
 
 [![Donate](https://img.shields.io/badge/Support-Development-blue?style=for-the-badge&logo=github)](https://buy.byfranke.com/b/8wM03kb3u7THeIgaEE)
+
 
 
 
