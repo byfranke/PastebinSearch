@@ -209,8 +209,8 @@ class BrowserManager:
                 if cookie_button:
                     await cookie_button.click()
                     print("Accepted cookies")
-            except:
-                pass  # No cookie banner found
+            except Exception as e:
+                print(f"Cookie banner handling: {type(e).__name__}")
             
             # Navigate to archive
             archive_link = await self.page.wait_for_selector('a[href="/archive"]', timeout=10000)
@@ -232,8 +232,8 @@ class BrowserManager:
                 )
                 cookie_button.click()
                 print("Accepted cookies")
-            except:
-                pass  # No cookie banner found
+            except Exception as e:
+                print(f"Cookie banner handling: {type(e).__name__}")
             
             # Navigate to archive
             archive_link = WebDriverWait(self.selenium_driver, 10).until(
@@ -362,7 +362,7 @@ class BrowserManager:
                 
                 # Calculate content hash
                 import hashlib
-                current_hash = hashlib.md5(content.encode()).hexdigest()
+                current_hash = hashlib.sha256(content.encode()).hexdigest()
                 
                 if previous_hash and current_hash != previous_hash:
                     print("Page change detected!")

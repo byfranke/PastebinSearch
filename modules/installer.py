@@ -79,10 +79,16 @@ class ToolInstaller:
         
         # Check internet connection for package installation
         try:
-            urllib.request.urlopen('https://pypi.org', timeout=5)
-            print("Internet connection - OK")
-        except:
-            print("[WARNING] Limited internet connection - some features may not work")
+            url = 'https://pypi.org'
+            if not url.startswith(('http://', 'https://')):
+                raise ValueError("Invalid URL scheme")
+            
+            req = urllib.request.Request(url, method='HEAD')
+            with urllib.request.urlopen(req, timeout=5) as response:
+                if response.status == 200:
+                    print("Internet connection - OK")
+        except (urllib.error.URLError, TimeoutError, OSError, ValueError) as e:
+            print(f"[WARNING] Limited internet connection - some features may not work: {type(e).__name__}")
         
         # Check available disk space (estimate 100MB needed)
         free_space = shutil.disk_usage(Path.home()).free

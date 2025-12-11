@@ -904,7 +904,7 @@ class PastebinSearchEngine:
                     return await response.text()
                 
         except Exception as e:
-            pass
+            print(f"Error fetching raw content from {raw_url}: {type(e).__name__}")
         
         return None
     
@@ -1038,7 +1038,7 @@ class PastebinSearchEngine:
     def generate_cache_key(self, search_term: str, filters: Dict[str, Any]) -> str:
         """Generate cache key for search results"""
         cache_data = f"{search_term}:{json.dumps(filters, sort_keys=True)}"
-        return hashlib.md5(cache_data.encode()).hexdigest()
+        return hashlib.sha256(cache_data.encode()).hexdigest()
     
     def is_cache_valid(self, timestamp: float) -> bool:
         """Check if cached result is still valid"""
